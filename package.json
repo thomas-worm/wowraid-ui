@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build-and-deploy": "rm -rf dist && ng build --prod && cd dist/wowraid-ui/ && (git init && ../../bin/heroku git:remote -a wowraid-ui && echo \"{}\" > composer.json && git add -A && git commit -m \"Files to deploy\" && git push heroku master --force || cd ../../) || rm -rf dist"
   },
   "private": true,
   "dependencies": {
