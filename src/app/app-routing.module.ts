@@ -4,13 +4,18 @@ import { HomeComponent } from './home/home.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
 import { AnmeldungComponent } from './anmeldung/anmeldung.component';
+import { LootregelnComponent } from './lootregeln/lootregeln.component';
+import { AuthGuardService } from './auth-guard.service';
+import { UserComponent } from './user/user.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'impressum', component: ImpressumComponent },
   { path: 'anmeldung', component: AnmeldungComponent },
-  { path: 'aufstellung', component: AufstellungComponent },
+  { path: 'aufstellung', component: AufstellungComponent, canActivate: [ AuthGuardService ] },
+  { path: 'lootregeln', component: LootregelnComponent },
+  { path: 'user', component: UserComponent, canActivate: [ AuthGuardService ] },
   { path: '**', redirectTo: '/' }
 ];
 

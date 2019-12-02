@@ -7,12 +7,27 @@
   </button>
 
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
+    <ul class="nav navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/">Raidzeiten</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" routerLink="/lootregeln">Lootregeln</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" routerLink="/impressum">Impressum</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav ml-auto">
+      <li class="nav-item" *ngIf="!authenticated">
+        <a class="nav-link" routerLink="/user">Login</a>
+      </li>
+      <li class="dropdown" *ngIf="authenticated">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="responsiveNavbarDropdown">
+        </div>
       </li>
     </ul>
   </div>

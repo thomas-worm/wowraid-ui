@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { AufstellungComponent } from './aufstellung/aufstellung.component';
 import { AnmeldungComponent } from './anmeldung/anmeldung.component';
+import { AuthService } from './auth.service';
+import { LootregelnComponent } from './lootregeln/lootregeln.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +18,17 @@ import { AnmeldungComponent } from './anmeldung/anmeldung.component';
     HomeComponent,
     ImpressumComponent,
     AufstellungComponent,
-    AnmeldungComponent
+    AnmeldungComponent,
+    LootregelnComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

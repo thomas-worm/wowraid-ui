@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
   title = 'wowraid-ui';
+  authenticated: boolean = false;
+  username: string;
+
+  constructor(private authService: AuthService) { }
+
+  ngOnInit() {
+    this.authService.isAuthenticated().subscribe(
+      result => {
+        this.authenticated = result;
+      }
+    )
+    this.authService.getUser().subscribe(
+      user => {
+        this.username = user.battleTag;
+      }
+    )
+  }
+
 }
