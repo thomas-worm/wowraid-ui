@@ -1,6 +1,6 @@
 {
   "root": "dist/wowraid-ui",
-  "routes": {
+  "routes":{
     "/**": "index.html"
   }
 }
