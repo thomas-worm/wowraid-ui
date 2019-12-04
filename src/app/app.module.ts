@@ -12,7 +12,7 @@ import { AuthService } from './auth.service';
 import { LootregelnComponent } from './lootregeln/lootregeln.component';
 import { UserComponent } from './user/user.component';
 import { CharacterComponent } from './user/character/character.component';
-import { CreateComponent } from './user/character/create/create.component';
+import { CharacterCreateComponent } from './user/character/create/create.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { CreateComponent } from './user/character/create/create.component';
     LootregelnComponent,
     UserComponent,
     CharacterComponent,
-    CreateComponent
+    CharacterCreateComponent
   ],
   imports: [
     BrowserModule,
