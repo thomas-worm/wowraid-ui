@@ -11,6 +11,8 @@ import { AnmeldungComponent } from './anmeldung/anmeldung.component';
 import { AuthService } from './auth.service';
 import { LootregelnComponent } from './lootregeln/lootregeln.component';
 import { UserComponent } from './user/user.component';
+import { CharacterComponent } from './user/character/character.component';
+import { CreateComponent } from './user/character/create/create.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { UserComponent } from './user/user.component';
     AufstellungComponent,
     AnmeldungComponent,
     LootregelnComponent,
-    UserComponent
+    UserComponent,
+    CharacterComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
