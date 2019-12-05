@@ -11,6 +11,7 @@ import { CharacterComponent } from './user/character/character.component';
 import { CharacterCreateComponent } from './user/character/create/create.component';
 import { GuideComponent } from './guide/guide.component';
 import { McGuideComponent } from './guide/mc/mc.component';
+import { DecursiveAddonGuideComponent } from './guide/addon/decursive/decursive.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'lootregeln', component: LootregelnComponent },
   { path: 'guide', component: GuideComponent },
   { path: 'guide/mc', component: McGuideComponent },
+  { path: 'guide/addon/decursive', component: DecursiveAddonGuideComponent },
   { path: 'user', component: UserComponent, canActivate: [ AuthGuardService ] },
   { path: 'user/characters', component: CharacterComponent, canActivate: [ AuthGuardService ] },
   { path: 'user/character/create', component: CharacterCreateComponent, canActivate: [ AuthGuardService ] },
