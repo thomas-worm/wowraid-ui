@@ -13,6 +13,18 @@ import { LootregelnComponent } from './lootregeln/lootregeln.component';
 import { UserComponent } from './user/user.component';
 import { CharacterComponent } from './user/character/character.component';
 import { CharacterCreateComponent } from './user/character/create/create.component';
+import { GuideComponent } from './guide/guide.component';
+import { McGuideComponent } from './guide/mc/mc.component';
+import { LucifronMcGuideComponent } from './guide/mc/lucifron/lucifron.component';
+import { MagmadarMcGuideComponent } from './guide/mc/magmadar/magmadar.component';
+import { GehennasMcGuideComponent } from './guide/mc/gehennas/gehennas.component';
+import { GarrMcGuideComponent } from './guide/mc/garr/garr.component';
+import { GeddonMcGuideComponent } from './guide/mc/geddon/geddon.component';
+import { ShazzrahMcGuideComponent } from './guide/mc/shazzrah/shazzrah.component';
+import { SulfuronMcGuideComponent } from './guide/mc/sulfuron/sulfuron.component';
+import { GolemaggMcGuideComponent } from './guide/mc/golemagg/golemagg.component';
+import { MajordomusMcGuideComponent } from './guide/mc/majordomus/majordomus.component';
+import { RagnarosMcGuideComponent } from './guide/mc/ragnaros/ragnaros.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +36,19 @@ import { CharacterCreateComponent } from './user/character/create/create.compone
     LootregelnComponent,
     UserComponent,
     CharacterComponent,
-    CharacterCreateComponent
+    CharacterCreateComponent,
+    GuideComponent,
+    McGuideComponent,
+    LucifronMcGuideComponent,
+    MagmadarMcGuideComponent,
+    GehennasMcGuideComponent,
+    GarrMcGuideComponent,
+    GeddonMcGuideComponent,
+    ShazzrahMcGuideComponent,
+    SulfuronMcGuideComponent,
+    GolemaggMcGuideComponent,
+    MajordomusMcGuideComponent,
+    RagnarosMcGuideComponent
   ],
   imports: [
     BrowserModule,

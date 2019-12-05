@@ -9,6 +9,8 @@ import { AuthGuardService } from './auth-guard.service';
 import { UserComponent } from './user/user.component';
 import { CharacterComponent } from './user/character/character.component';
 import { CharacterCreateComponent } from './user/character/create/create.component';
+import { GuideComponent } from './guide/guide.component';
+import { McGuideComponent } from './guide/mc/mc.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path: 'anmeldung', component: AnmeldungComponent },
   { path: 'aufstellung', component: AufstellungComponent, canActivate: [ AuthGuardService ] },
   { path: 'lootregeln', component: LootregelnComponent },
+  { path: 'guide', component: GuideComponent },
+  { path: 'guide/mc', component: McGuideComponent },
   { path: 'user', component: UserComponent, canActivate: [ AuthGuardService ] },
   { path: 'user/characters', component: CharacterComponent, canActivate: [ AuthGuardService ] },
   { path: 'user/character/create', component: CharacterCreateComponent, canActivate: [ AuthGuardService ] },
