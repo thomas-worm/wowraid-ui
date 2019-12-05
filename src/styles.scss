@@ -13,3 +13,8 @@ $navbar-dark-hover-color: #b09779;
 $navbar-dark-active-color: #b09779;
 
 @import "node_modules/bootstrap/scss/bootstrap";
+
+.navbar {
+  margin-bottom: 1rem;
+  box-shadow: 0 0 0.6rem 0.2rem #332824;
+}
