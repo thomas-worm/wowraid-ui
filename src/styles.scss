@@ -4,6 +4,12 @@ $body-bg: #d6b690;
 $body-color: #613f21;
 
 $dark: #3d2a19;
-$light: #78532f;
+
+$navbar-dark-brand-color: #78532f;
+$navbar-dark-brand-hover-color: #d6b690;
+
+$navbar-dark-color: #78532f;
+$navbar-dark-hover-color: #d6b690;
+$navbar-dark-active-color: #d6b690;
 
 @import "node_modules/bootstrap/scss/bootstrap";
