@@ -26,7 +26,7 @@ import { GolemaggMcGuideComponent } from './guide/mc/golemagg/golemagg.component
 import { MajordomusMcGuideComponent } from './guide/mc/majordomus/majordomus.component';
 import { RagnarosMcGuideComponent } from './guide/mc/ragnaros/ragnaros.component';
 import { DecursiveAddonGuideComponent } from './guide/addon/decursive/decursive.component';
-import { OnyxiaComponent } from './guide/onyxia/onyxia.component';
+import { OnyxiaGuideComponent } from './guide/onyxia/onyxia.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { OnyxiaComponent } from './guide/onyxia/onyxia.component';
     MajordomusMcGuideComponent,
     RagnarosMcGuideComponent,
     DecursiveAddonGuideComponent,
-    OnyxiaComponent
+    OnyxiaGuideComponent
   ],
   imports: [
     BrowserModule,

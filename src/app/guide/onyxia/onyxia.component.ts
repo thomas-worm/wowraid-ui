@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './onyxia.component.html',
   styleUrls: ['./onyxia.component.scss']
 })
-export class OnyxiaComponent implements OnInit {
+export class OnyxiaGuideComponent implements OnInit {
 
   constructor() { }
 
