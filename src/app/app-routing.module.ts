@@ -13,6 +13,16 @@ import { GuideComponent } from './guide/guide.component';
 import { McGuideComponent } from './guide/mc/mc.component';
 import { DecursiveAddonGuideComponent } from './guide/addon/decursive/decursive.component';
 import { OnyxiaGuideComponent } from './guide/onyxia/onyxia.component';
+import { LucifronMcGuideComponent } from './guide/mc/lucifron/lucifron.component';
+import { MagmadarMcGuideComponent } from './guide/mc/magmadar/magmadar.component';
+import { GehennasMcGuideComponent } from './guide/mc/gehennas/gehennas.component';
+import { GarrMcGuideComponent } from './guide/mc/garr/garr.component';
+import { GeddonMcGuideComponent } from './guide/mc/geddon/geddon.component';
+import { ShazzrahMcGuideComponent } from './guide/mc/shazzrah/shazzrah.component';
+import { SulfuronMcGuideComponent } from './guide/mc/sulfuron/sulfuron.component';
+import { GolemaggMcGuideComponent } from './guide/mc/golemagg/golemagg.component';
+import { MajordomusMcGuideComponent } from './guide/mc/majordomus/majordomus.component';
+import { RagnarosMcGuideComponent } from './guide/mc/ragnaros/ragnaros.component';
 
 
 const routes: Routes = [
@@ -23,6 +33,16 @@ const routes: Routes = [
   { path: 'lootregeln', component: LootregelnComponent },
   { path: 'guide', component: GuideComponent },
   { path: 'guide/mc', component: McGuideComponent },
+  { path: 'guide/mc/lucifron', component: LucifronMcGuideComponent },
+  { path: 'guide/mc/magmadar', component: MagmadarMcGuideComponent },
+  { path: 'guide/mc/gehennas', component: GehennasMcGuideComponent },
+  { path: 'guide/mc/garr', component: GarrMcGuideComponent },
+  { path: 'guide/mc/geddon', component: GeddonMcGuideComponent },
+  { path: 'guide/mc/shazzrah', component: ShazzrahMcGuideComponent },
+  { path: 'guide/mc/sulfuron', component: SulfuronMcGuideComponent },
+  { path: 'guide/mc/golemagg', component: GolemaggMcGuideComponent },
+  { path: 'guide/mc/majordomus', component: MajordomusMcGuideComponent },
+  { path: 'guide/mc/ragnaros', component: RagnarosMcGuideComponent },
   { path: 'guide/onyxia', component: OnyxiaGuideComponent },
   { path: 'guide/addon/decursive', component: DecursiveAddonGuideComponent },
   { path: 'user', component: UserComponent, canActivate: [ AuthGuardService ] },
