@@ -33,8 +33,8 @@ export class CharacterCreateComponent implements OnInit {
       this.factions = factions;
       this.character.controls.faction.enable();
     });
-    this.character.controls.faction.valueChanges.subscribe(event => this.onFactionChange());
-    this.character.controls.race.valueChanges.subscribe(event => this.onRaceChange());
+    this.character.controls.faction.valueChanges.subscribe(this.onFactionChange);
+    this.character.controls.race.valueChanges.subscribe(this.onRaceChange);
   }
 
   translateFaction(faction: string): string {
@@ -47,11 +47,11 @@ export class CharacterCreateComponent implements OnInit {
     return faction;
   }
 
-  onFactionChange() {
+  onFactionChange(value: string) {
     this.character.controls.race.patchValue(null);
     this.character.controls.race.disable();
-    if (this.character.controls.faction != null) {
-      this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction/' + this.character.controls.faction.value + '/race', {withCredentials: true}).subscribe(races => {
+    if (value != null) {
+      this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction/' + value.toLocaleLowerCase() + '/race', {withCredentials: true}).subscribe(races => {
         this.races = races;
         this.character.controls.race.enable();
       });
@@ -87,11 +87,11 @@ export class CharacterCreateComponent implements OnInit {
     return race;
   }
 
-  onRaceChange() {
+  onRaceChange(value: string) {
     this.character.controls.class.patchValue(null);
     this.character.controls.class.disable();
-    if (this.character.controls.race.value != null) {
-      this.http.get<string[]>('https://wowraid-api.herokuapp.com/race/' + this.character.controls.race.value + '/class', {withCredentials: true}).subscribe(classes => {
+    if (value != null) {
+      this.http.get<string[]>('https://wowraid-api.herokuapp.com/race/' + value.toLocaleLowerCase() + '/class', {withCredentials: true}).subscribe(classes => {
         this.classes = classes;
         this.character.controls.class.enable();
       });
