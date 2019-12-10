@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-character',
@@ -7,6 +8,9 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./character.component.scss']
 })
 export class CharacterComponent implements OnInit {
+
+  realms: String[] = [];
+  factions: String[] = [];
 
   character = new FormGroup({
     realm: new FormControl({value: null, disabled: true}),
@@ -16,9 +20,17 @@ export class CharacterComponent implements OnInit {
     class: new FormControl({value: null, disabled: true})
   });
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.http.get<String[]>('https://wowraid-api.herokuapp.com/realm', {withCredentials: true}).subscribe(realms => {
+      this.realms = realms;
+      this.character.get('realm').enable();
+    });
+    this.http.get<String[]>('https://wowraid-api.herokuapp.com/faction', {withCredentials: true}).subscribe(factions => {
+      this.factions = factions;
+      this.character.get('faction').enable();
+    });
   }
 
 }
