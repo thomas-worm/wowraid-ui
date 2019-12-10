@@ -56,10 +56,10 @@ export class CharacterCreateComponent implements OnInit {
   }
 
   onFactionChange(value: string, form: FormGroup) {
-    this.racesLoading = true;
     form.controls.race.patchValue(null);
     form.controls.race.disable();
     if (value != null) {
+      this.racesLoading = true;
       this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction/' + value.toLocaleLowerCase() + '/race', {withCredentials: true}).subscribe(races => {
         this.races = races;
         form.controls.race.enable();
@@ -98,10 +98,10 @@ export class CharacterCreateComponent implements OnInit {
   }
 
   onRaceChange(value: string, form: FormGroup) {
-    this.classesLoading = true;
     form.controls.class.patchValue(null);
     form.controls.class.disable();
     if (value != null) {
+      this.classesLoading = true;
       this.http.get<string[]>('https://wowraid-api.herokuapp.com/race/' + value.toLocaleLowerCase() + '/class', {withCredentials: true}).subscribe(classes => {
         this.classes = classes;
         form.controls.class.enable();
