@@ -33,6 +33,8 @@ export class CharacterCreateComponent implements OnInit {
       this.factions = factions;
       this.character.controls.faction.enable();
     });
+    this.character.controls.faction.valueChanges.subscribe(event => this.onFactionChange());
+    this.character.controls.race.valueChanges.subscribe(event => this.onRaceChange());
   }
 
   translateFaction(faction: string): string {
