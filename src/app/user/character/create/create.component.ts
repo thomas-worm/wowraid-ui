@@ -10,9 +10,13 @@ import { HttpClient } from '@angular/common/http';
 export class CharacterCreateComponent implements OnInit {
 
   realms: string[] = [];
+  realmsLoading: boolean = false;
   factions: string[] = [];
+  factionsLoading: boolean = false;
   races: string[] = [];
+  racesLoading: boolean = false;
   classes: string[] = [];
+  classesLoading: boolean = false;
 
   character = new FormGroup({
     realm: new FormControl({value: null, disabled: true}),
@@ -25,13 +29,17 @@ export class CharacterCreateComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.realmsLoading = true;
     this.http.get<string[]>('https://wowraid-api.herokuapp.com/realm', {withCredentials: true}).subscribe(realms => {
       this.realms = realms;
       this.character.controls.realm.enable();
+      this.realmsLoading = false;
     });
+    this.factionsLoading = true;
     this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction', {withCredentials: true}).subscribe(factions => {
       this.factions = factions;
       this.character.controls.faction.enable();
+      this.factionsLoading = false;
     });
     this.character.controls.faction.valueChanges.subscribe(value => this.onFactionChange(value, this.character));
     this.character.controls.race.valueChanges.subscribe(value => this.onRaceChange(value, this.character));
@@ -48,12 +56,14 @@ export class CharacterCreateComponent implements OnInit {
   }
 
   onFactionChange(value: string, form: FormGroup) {
+    this.racesLoading = true;
     form.controls.race.patchValue(null);
     form.controls.race.disable();
     if (value != null) {
       this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction/' + value.toLocaleLowerCase() + '/race', {withCredentials: true}).subscribe(races => {
         this.races = races;
         form.controls.race.enable();
+        this.racesLoading = false;
       });
     }
   }
@@ -88,12 +98,14 @@ export class CharacterCreateComponent implements OnInit {
   }
 
   onRaceChange(value: string, form: FormGroup) {
+    this.classesLoading = true;
     form.controls.class.patchValue(null);
     form.controls.class.disable();
     if (value != null) {
       this.http.get<string[]>('https://wowraid-api.herokuapp.com/race/' + value.toLocaleLowerCase() + '/class', {withCredentials: true}).subscribe(classes => {
         this.classes = classes;
         form.controls.class.enable();
+        this.classesLoading = false;
       });
     }
   }
