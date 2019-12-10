@@ -9,8 +9,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CharacterCreateComponent implements OnInit {
 
-  realms: String[] = [];
-  factions: String[] = [];
+  realms: string[] = [];
+  factions: string[] = [];
+  races: string[] = [];
+  classes: string[] = [];
 
   character = new FormGroup({
     realm: new FormControl({value: null, disabled: true}),
@@ -23,13 +25,13 @@ export class CharacterCreateComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get<String[]>('https://wowraid-api.herokuapp.com/realm', {withCredentials: true}).subscribe(realms => {
+    this.http.get<string[]>('https://wowraid-api.herokuapp.com/realm', {withCredentials: true}).subscribe(realms => {
       this.realms = realms;
-      this.character.get('realm').enable();
+      this.character.controls.realm.enable();
     });
-    this.http.get<String[]>('https://wowraid-api.herokuapp.com/faction', {withCredentials: true}).subscribe(factions => {
+    this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction', {withCredentials: true}).subscribe(factions => {
       this.factions = factions;
-      this.character.get('faction').enable();
+      this.character.controls.faction.enable();
     });
   }
 
@@ -41,6 +43,88 @@ export class CharacterCreateComponent implements OnInit {
       return 'Horde';
     }
     return faction;
+  }
+
+  onFactionChange() {
+    this.character.controls.race.patchValue(null);
+    this.character.controls.race.disable();
+    if (this.character.controls.faction != null) {
+      this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction/' + this.character.controls.faction.value + '/race', {withCredentials: true}).subscribe(races => {
+        this.races = races;
+        this.character.controls.race.enable();
+      });
+    }
+  }
+
+  translateRace(race: string): string {
+    if (race.toLocaleLowerCase() == 'human') {
+      return 'Mensch';
+    }
+    if (race.toLocaleLowerCase() == 'dwarf') {
+      return 'Zwerg';
+    }
+    if (race.toLocaleLowerCase() == 'night elf'
+     || race.toLocaleLowerCase() == 'nightelf') {
+      return 'Nachtelf';
+    }
+    if (race.toLocaleLowerCase() == 'gnome') {
+      return 'Gnom';
+    }
+    if (race.toLocaleLowerCase() == 'orc') {
+      return 'Orc';
+    }
+    if (race.toLocaleLowerCase() == 'undead') {
+      return 'Untoter';
+    }
+    if (race.toLocaleLowerCase() == 'tauren') {
+      return 'Taure';
+    }
+    if (race.toLocaleLowerCase() == 'troll') {
+      return 'Troll';
+    }
+    return race;
+  }
+
+  onRaceChange() {
+    this.character.controls.class.patchValue(null);
+    this.character.controls.class.disable();
+    if (this.character.controls.race.value != null) {
+      this.http.get<string[]>('https://wowraid-api.herokuapp.com/race/' + this.character.controls.race.value + '/class', {withCredentials: true}).subscribe(classes => {
+        this.classes = classes;
+        this.character.controls.class.enable();
+      });
+    }
+  }
+
+  translateClass(className: string): string {
+    if (className.toLocaleLowerCase() == 'priest') {
+      return 'Priester';
+    }
+    if (className.toLocaleLowerCase() == 'rogue') {
+      return 'Schurke';
+    }
+    if (className.toLocaleLowerCase() == 'warrior') {
+      return 'Krieger';
+    }
+    if (className.toLocaleLowerCase() == 'mage') {
+      return 'Magier';
+    }
+    if (className.toLocaleLowerCase() == 'druid') {
+      return 'Druide';
+    }
+    if (className.toLocaleLowerCase() == 'hunter') {
+      return 'Jäger';
+    }
+    if (className.toLocaleLowerCase() == 'warlock') {
+      return 'Hexenmeister';
+    }
+    if (className.toLocaleLowerCase() == 'shaman') {
+      return 'Schamane';
+    }
+    if (className.toLocaleLowerCase() == 'paladin') {
+      return 'Paladin';
+    }
+    return className;
   }
 
 }
