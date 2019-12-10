@@ -33,8 +33,8 @@ export class CharacterCreateComponent implements OnInit {
       this.factions = factions;
       this.character.controls.faction.enable();
     });
-    this.character.controls.faction.valueChanges.subscribe(this.onFactionChange);
-    this.character.controls.race.valueChanges.subscribe(this.onRaceChange);
+    this.character.controls.faction.valueChanges.subscribe(value => this.onFactionChange(value, this.character));
+    this.character.controls.race.valueChanges.subscribe(value => this.onRaceChange(value, this.character));
   }
 
   translateFaction(faction: string): string {
@@ -47,13 +47,13 @@ export class CharacterCreateComponent implements OnInit {
     return faction;
   }
 
-  onFactionChange(value: string) {
-    this.character.controls.race.patchValue(null);
-    this.character.controls.race.disable();
+  onFactionChange(value: string, form: FormGroup) {
+    form.controls.race.patchValue(null);
+    form.controls.race.disable();
     if (value != null) {
       this.http.get<string[]>('https://wowraid-api.herokuapp.com/faction/' + value.toLocaleLowerCase() + '/race', {withCredentials: true}).subscribe(races => {
         this.races = races;
-        this.character.controls.race.enable();
+        form.controls.race.enable();
       });
     }
   }
@@ -87,13 +87,13 @@ export class CharacterCreateComponent implements OnInit {
     return race;
   }
 
-  onRaceChange(value: string) {
-    this.character.controls.class.patchValue(null);
-    this.character.controls.class.disable();
+  onRaceChange(value: string, form: FormGroup) {
+    form.controls.class.patchValue(null);
+    form.controls.class.disable();
     if (value != null) {
       this.http.get<string[]>('https://wowraid-api.herokuapp.com/race/' + value.toLocaleLowerCase() + '/class', {withCredentials: true}).subscribe(classes => {
         this.classes = classes;
-        this.character.controls.class.enable();
+        form.controls.class.enable();
       });
     }
   }
