@@ -13,7 +13,9 @@
     <form [formGroup]="character">
       <div class="form-group">
         <label for="realm">Realm:</label>
-        <select id="realm" formControlName="realm" class="custom-select form-control"></select>
+        <select id="realm" formControlName="realm" class="custom-select form-control">
+          <option *ngFor="let realm of realms" [value]="realm">{{ realm }}</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="characterName">Charaktername:</label>
@@ -21,7 +23,9 @@
       </div>
       <div class="form-group">
         <label for="faction">Fraktion:</label>
-        <select id="faction" formControlName="faction" class="custom-select form-control" placeholder="Fraktion"></select>
+        <select id="faction" formControlName="faction" class="custom-select form-control" placeholder="Fraktion">
+          <option *ngFor="let faction of factions" [value]="faction">{{ translateFaction(faction) }}</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="race">Volk:</label>

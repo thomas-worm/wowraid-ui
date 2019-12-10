@@ -33,4 +33,14 @@ export class CharacterComponent implements OnInit {
     });
   }
 
+  translateFaction(faction: string): string {
+    if (faction.toLocaleLowerCase() == 'alliance') {
+      return 'Allianz';
+    }
+    if (faction.toLocaleLowerCase() == 'horde') {
+      return 'Horde';
+    }
+    return faction;
+  }
+
 }
