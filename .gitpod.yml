@@ -1,2 +1,16 @@
 ports:
  - port: 4200
+image:
+  file: .gitpod.dockerfile
+tasks:
+ - command: 'if [ ! -z "$HEROKU_USERNAME" -a ! -z "$HEROKU_PASSWORD" ]; then
+   cat > ./test << EOF
+machine api.heroku.com
+  login $HEROKU_USERNAME
+  password $HEROKU_TOKEN
+machine git.heroku.com
+  login $HEROKU_USERNAME
+  password $HEROKU_TOKEN
+EOF
+fi'
+ - command: npm install -g npm @angular/cli
