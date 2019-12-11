@@ -13,7 +13,7 @@
     <form [formGroup]="character" (ngSubmit)="onSubmit()">
       <div
         class="form-group"
-        [ngClass]="{'was-validated': character.control.realm.touched}">
+        [ngClass]="{'was-validated': character.controls.realm.touched}">
         <div class="spinner-border float-right" role="status" *ngIf="realmsLoading">
           <span class="sr-only">Loading...</span>
         </div>
@@ -24,15 +24,15 @@
           class="custom-select form-control"
           placeholder="Realm"
           [ngClass]="{
-            ':valid': character.control.realm.valid,
-            ':invalid': !character.control.realm.valid
+            ':valid': character.controls.realm.valid,
+            ':invalid': !character.controls.realm.valid
           }">
           <option *ngFor="let realm of realms" [value]="realm">{{ realm }}</option>
         </select>
       </div>
       <div
         class="form-group"
-        [ngClass]="{'was-validated': character.control.characterName.touched}">
+        [ngClass]="{'was-validated': character.controls.characterName.touched}">
         <label for="characterName">Charaktername:</label>
         <input type="text"
           formControlName="characterName"
@@ -40,13 +40,13 @@
           id="name"
           placeholder="Charaktername"
           [ngClass]="{
-            ':valid': character.control.characterName.valid,
-            ':invalid': !character.control.characterName.valid
+            ':valid': character.controls.characterName.valid,
+            ':invalid': !character.controls.characterName.valid
           }" />
       </div>
       <div
         class="form-group"
-        [ngClass]="{'was-validated': character.control.faction.touched}">
+        [ngClass]="{'was-validated': character.controls.faction.touched}">
         <div class="spinner-border float-right" role="status" *ngIf="factionsLoading">
           <span class="sr-only">Loading...</span>
         </div>
@@ -57,15 +57,15 @@
           class="custom-select form-control"
           placeholder="Fraktion"
           [ngClass]="{
-            ':valid': character.control.faction.valid,
-            ':invalid': !character.control.faction.valid
+            ':valid': character.controls.faction.valid,
+            ':invalid': !character.controls.faction.valid
           }">
           <option *ngFor="let faction of factions" [value]="faction">{{ translateFaction(faction) }}</option>
         </select>
       </div>
       <div
         class="form-group"
-        [ngClass]="{'was-validated': character.control.race.touched}">>
+        [ngClass]="{'was-validated': character.controls.race.touched}">>
         <div class="spinner-border float-right" role="status" *ngIf="racesLoading">
           <span class="sr-only">Loading...</span>
         </div>
@@ -76,15 +76,15 @@
           class="custom-select form-control"
           placeholder="Volk"
           [ngClass]="{
-            ':valid': character.control.race.valid,
-            ':invalid': !character.control.race.valid
+            ':valid': character.controls.race.valid,
+            ':invalid': !character.controls.race.valid
           }">
           <option *ngFor="let race of races" [value]="race">{{ translateRace(race) }}</option>
         </select>
       </div>
       <div
         class="form-group"
-        [ngClass]="{'was-validated': character.control.class.touched}">>>
+        [ngClass]="{'was-validated': character.controls.class.touched}">>>
         <div class="spinner-border float-right" role="status" *ngIf="classesLoading">
           <span class="sr-only">Loading...</span>
         </div>
@@ -95,8 +95,8 @@
           class="custom-select form-control"
           placeholder="Klasse"
           [ngClass]="{
-            ':valid': character.control.class.valid,
-            ':invalid': !character.control.class.valid
+            ':valid': character.controls.class.valid,
+            ':invalid': !character.controls.class.valid
           }">
           <option *ngFor="let className of classes" [value]="className">{{ translateClass(className) }}</option>
         </select>
