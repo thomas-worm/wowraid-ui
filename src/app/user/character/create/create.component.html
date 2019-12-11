@@ -11,43 +11,93 @@
 <div class="row">
   <div class="col">
     <form [formGroup]="character" (ngSubmit)="onSubmit()">
-      <div class="form-group">
+      <div
+        class="form-group"
+        [ngClass]="{'was-validated': character.control.realm.touched}">
         <div class="spinner-border float-right" role="status" *ngIf="realmsLoading">
           <span class="sr-only">Loading...</span>
         </div>
         <label for="realm">Realm:</label>
-        <select id="realm" formControlName="realm" class="custom-select form-control">
+        <select
+          id="realm"
+          formControlName="realm"
+          class="custom-select form-control"
+          placeholder="Realm"
+          [ngClass]="{
+            ':valid': character.control.realm.valid,
+            ':invalid': !character.control.realm.valid
+          }">
           <option *ngFor="let realm of realms" [value]="realm">{{ realm }}</option>
         </select>
       </div>
-      <div class="form-group">
+      <div
+        class="form-group"
+        [ngClass]="{'was-validated': character.control.characterName.touched}">
         <label for="characterName">Charaktername:</label>
-        <input type="text" formControlName="characterName" class="form-control" id="name" placeholder="Charaktername" />
+        <input type="text"
+          formControlName="characterName"
+          class="form-control"
+          id="name"
+          placeholder="Charaktername"
+          [ngClass]="{
+            ':valid': character.control.characterName.valid,
+            ':invalid': !character.control.characterName.valid
+          }" />
       </div>
-      <div class="form-group">
+      <div
+        class="form-group"
+        [ngClass]="{'was-validated': character.control.faction.touched}">
         <div class="spinner-border float-right" role="status" *ngIf="factionsLoading">
           <span class="sr-only">Loading...</span>
         </div>
         <label for="faction">Fraktion:</label>
-        <select id="faction" formControlName="faction" class="custom-select form-control" placeholder="Fraktion">
+        <select
+          id="faction"
+          formControlName="faction"
+          class="custom-select form-control"
+          placeholder="Fraktion"
+          [ngClass]="{
+            ':valid': character.control.faction.valid,
+            ':invalid': !character.control.faction.valid
+          }">
           <option *ngFor="let faction of factions" [value]="faction">{{ translateFaction(faction) }}</option>
         </select>
       </div>
-      <div class="form-group">
+      <div
+        class="form-group"
+        [ngClass]="{'was-validated': character.control.race.touched}">>
         <div class="spinner-border float-right" role="status" *ngIf="racesLoading">
           <span class="sr-only">Loading...</span>
         </div>
         <label for="race">Volk:</label>
-        <select id="race" formControlName="race" class="custom-select form-control" placeholder="Volk">
+        <select
+          id="race"
+          formControlName="race"
+          class="custom-select form-control"
+          placeholder="Volk"
+          [ngClass]="{
+            ':valid': character.control.race.valid,
+            ':invalid': !character.control.race.valid
+          }">
           <option *ngFor="let race of races" [value]="race">{{ translateRace(race) }}</option>
         </select>
       </div>
-      <div class="form-group">
+      <div
+        class="form-group"
+        [ngClass]="{'was-validated': character.control.class.touched}">>>
         <div class="spinner-border float-right" role="status" *ngIf="classesLoading">
           <span class="sr-only">Loading...</span>
         </div>
         <label for="class">Klasse:</label>
-        <select id="class" formControlName="class" class="custom-select form-control" placeholder="Klasse">
+        <select
+          id="class"
+          formControlName="class"
+          class="custom-select form-control"
+          placeholder="Klasse"
+          [ngClass]="{
+            ':valid': character.control.class.valid,
+            ':invalid': !character.control.class.valid
+          }">
           <option *ngFor="let className of classes" [value]="className">{{ translateClass(className) }}</option>
         </select>
       </div>
