@@ -7,8 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "build-and-deploy": "rm -rf dist && ng build --prod && cd dist/wowraid-ui/ && (git init && ../../bin/heroku git:remote -a wowraid-ui && echo \"{}\" > composer.json && echo \"RewriteEngine On\" > .htaccess && echo \"RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]\" >> .htaccess && echo \"RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d\" >> .htaccess && echo \"RewriteRule ^ - [L]\" >> .htaccess && echo \"RewriteCond %{REQUEST_URI} ^/.*$\" >> .htaccess && echo \"RewriteRule ^ /index.html [L]\" >> .htaccess && git add -A && git commit -m \"Files to deploy\" && git push heroku master --force || cd ../../) || rm -rf dist"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
