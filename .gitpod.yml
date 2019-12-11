@@ -3,7 +3,7 @@ ports:
 image:
   file: .gitpod.dockerfile
 tasks:
- - command: 'if [ ! -z "$HEROKU_USERNAME" -a ! -z "$HEROKU_PASSWORD" ]; then
+ - command: 'if [ ! -z "$HEROKU_USERNAME" -a ! -z "$HEROKU_TOKEN" ]; then
    cat > ./test << EOF
 machine api.heroku.com
   login $HEROKU_USERNAME
