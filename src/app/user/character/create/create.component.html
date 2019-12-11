@@ -23,10 +23,7 @@
           formControlName="realm"
           class="custom-select form-control"
           placeholder="Realm"
-          [ngClass]="{
-            ':valid': character.controls.realm.valid,
-            ':invalid': !character.controls.realm.valid
-          }">
+          required="required">
           <option *ngFor="let realm of realms" [value]="realm">{{ realm }}</option>
         </select>
       </div>
@@ -38,7 +35,8 @@
           formControlName="characterName"
           class="form-control"
           id="name"
-          placeholder="Charaktername" />
+          placeholder="Charaktername"
+          required="required" />
       </div>
       <div
         class="form-group"
@@ -52,10 +50,7 @@
           formControlName="faction"
           class="custom-select form-control"
           placeholder="Fraktion"
-          [ngClass]="{
-            ':valid': character.controls.faction.valid,
-            ':invalid': !character.controls.faction.valid
-          }">
+          required="required">
           <option *ngFor="let faction of factions" [value]="faction">{{ translateFaction(faction) }}</option>
         </select>
       </div>
@@ -71,10 +66,7 @@
           formControlName="race"
           class="custom-select form-control"
           placeholder="Volk"
-          [ngClass]="{
-            ':valid': character.controls.race.valid,
-            ':invalid': !character.controls.race.valid
-          }">
+          required="required">
           <option *ngFor="let race of races" [value]="race">{{ translateRace(race) }}</option>
         </select>
       </div>
@@ -90,10 +82,7 @@
           formControlName="class"
           class="custom-select form-control"
           placeholder="Klasse"
-          [ngClass]="{
-            ':valid': character.controls.class.valid,
-            ':invalid': !character.controls.class.valid
-          }">
+          required="required">
           <option *ngFor="let className of classes" [value]="className">{{ translateClass(className) }}</option>
         </select>
       </div>
