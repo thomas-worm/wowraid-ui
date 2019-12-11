@@ -40,8 +40,8 @@
           id="name"
           placeholder="Charaktername"
           [ngClass]="{
-            ':valid': character.controls.characterName.valid,
-            ':invalid': !character.controls.characterName.valid
+            ':valid is-valid': character.controls.characterName.valid,
+            ':invalid is-invalid': !character.controls.characterName.valid
           }" />
       </div>
       <div
