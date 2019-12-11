@@ -3,14 +3,5 @@ ports:
 image:
   file: .gitpod.dockerfile
 tasks:
- - command: 'if [ ! -z "$HEROKU_USERNAME" -a ! -z "$HEROKU_TOKEN" ]; then
-   cat > ~/.netrc << EOF
-machine api.heroku.com
-  login $HEROKU_USERNAME
-  password $HEROKU_TOKEN
-machine git.heroku.com
-  login $HEROKU_USERNAME
-  password $HEROKU_TOKEN
-EOF
-fi'
+ - command: 'if [ ! -z "$HEROKU_USERNAME" -a ! -z "$HEROKU_TOKEN" ]; then (echo -e "machine api.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_TOKEN\nmachine git.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_TOKEN" > /home/$USER/.netrc) fi'
  - command: yes "" | npm install -g npm @angular/cli
