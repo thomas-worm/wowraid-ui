@@ -10,7 +10,7 @@
 </div>
 <div class="row">
   <div class="col">
-    <form [formGroup]="character">
+    <form [formGroup]="character" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <div class="spinner-border float-right" role="status" *ngIf="realmsLoading">
           <span class="sr-only">Loading...</span>
@@ -51,7 +51,7 @@
           <option *ngFor="let className of classes" [value]="className">{{ translateClass(className) }}</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">Anlegen</button>
+      <button type="submit" [disabled]="!character.valid" class="btn btn-primary">Anlegen</button>
     </form>
   </div>
 </div>

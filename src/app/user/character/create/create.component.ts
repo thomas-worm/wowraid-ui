@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -19,11 +19,11 @@ export class CharacterCreateComponent implements OnInit {
   classesLoading: boolean = false;
 
   character = new FormGroup({
-    realm: new FormControl({value: null, disabled: true}),
-    characterName: new FormControl({value: '', disabled: false}),
-    faction: new FormControl({value: null, disabled: true}),
-    race: new FormControl({value: null, disabled: true}),
-    class: new FormControl({value: null, disabled: true})
+    realm: new FormControl({value: null, disabled: true}, Validators.required),
+    characterName: new FormControl({value: '', disabled: false}, Validators.required),
+    faction: new FormControl({value: null, disabled: true}, Validators.required),
+    race: new FormControl({value: null, disabled: true}, Validators.required),
+    class: new FormControl({value: null, disabled: true}, Validators.required)
   });
 
   constructor(private http: HttpClient) { }
@@ -139,6 +139,11 @@ export class CharacterCreateComponent implements OnInit {
       return 'Paladin';
     }
     return className;
+  }
+
+  onSubmit() {
+    // TODO: Use EventEmitter with form value
+    console.log(this.character.value);
   }
 
 }
