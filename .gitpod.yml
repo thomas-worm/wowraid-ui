@@ -5,3 +5,7 @@ image:
 tasks:
  - command: 'if [ ! -z "$HEROKU_USERNAME" -a ! -z "$HEROKU_TOKEN" ]; then (echo -e "machine api.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_TOKEN\nmachine git.heroku.com\n  login $HEROKU_USERNAME\n  password $HEROKU_TOKEN" >> /home/$USER/.netrc) fi'
  - command: yes "" | npm install -g npm @angular/cli
+
+vscode:
+  extensions:
+    - ivangabriele.vscode-heroku@1.4.3:d1WHmJ4LR/9gmXaMMR+Iiw==
