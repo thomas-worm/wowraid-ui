@@ -39,10 +39,10 @@ $link-hover-color: #5f8550;
 }
 
 .form-control {
-  .was-validated .ng-valid {
+  .was-validated &.ng-valid {
     @extend :valid;
   }
-  .was-validated .ng-invalid {
+  .was-validated &.ng-invalid {
     @extend :invalid;
   }
 }
