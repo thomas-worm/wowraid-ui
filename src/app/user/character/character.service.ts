@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Character } from '../../model/character.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CharacterService {
 
   private characters: BehaviorSubject<Character[]> = new BehaviorSubject<Character[]>([]);

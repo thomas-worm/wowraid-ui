@@ -62,7 +62,10 @@ import { OnyxiaGuideComponent } from './guide/onyxia/onyxia.component';
     ReactiveFormsModule
   ],
   providers: [
+
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
