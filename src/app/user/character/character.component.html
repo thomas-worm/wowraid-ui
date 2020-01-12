@@ -8,6 +8,11 @@
     <p>Die Charakterverwaltung ist gerade in Entwicklung, sie funktioniert noch nicht.</p>
   </div>
 </div>
+<ul>
+  <li *ngFor="let character in characters">
+    {{ character.name }} ({{ character.realm }})
+  </li>
+</ul>
 <div class="row">
   <div class="col">
     <button class="btn btn-primary" routerLink="/user/character/create">Neuen Charakter anlagen</button>
