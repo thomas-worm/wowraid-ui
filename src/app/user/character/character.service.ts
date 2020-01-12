@@ -15,7 +15,17 @@ export class CharacterService {
   }
 
   getUserCharacters(): Observable<Character[]> {
-    this.http.get<Character[]>('https://wowraid-api.herokuapp.com/user/character', {withCredentials: true}).subscribe(characters => this.userCharacters.next(characters));
+    this.http.get<any[]>('https://wowraid-api.herokuapp.com/user/character', {withCredentials: true}).subscribe(rawCharacters => {
+      let characters: Character[] =
+        rawCharacters.map(rawCharacter => new Character(
+          rawCharacter.name,
+          rawCharacter.realm,
+          rawCharacter['class'],
+          rawCharacter.race,
+          rawCharacter.faction
+        ));
+      this.userCharacters.next(characters)
+    });
     return this.userCharacters.asObservable();
   }
 

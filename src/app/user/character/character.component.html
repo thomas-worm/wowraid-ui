@@ -3,16 +3,33 @@
     <h1>Charakterverwaltung</h1>
   </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="characters == null || characters.length == 0">
   <div class="col">
-    <p>Die Charakterverwaltung ist gerade in Entwicklung, sie funktioniert noch nicht.</p>
+    <p>Du hast noch keine Charaktere angelegt.</p>
   </div>
 </div>
-<ul>
-  <li *ngFor="let character of characters">
-    {{ character.name }} ({{ character.realm }})
-  </li>
-</ul>
+<div class="table-responsive" *ngIf="characters != null && characters.length > 0">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Realm</th>
+        <th scope="col">Name</th>
+        <th scope="col">Fraktion</th>
+        <th scope="col">Volk</th>
+        <th scope="col">Klasse</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let character of characters">
+        <td>{{ character.realm }}</td>
+        <td>{{ character.name }}</td>
+        <td>{{ character.faction }}</td>
+        <td>{{ character.race }}</td>
+        <td>{{ character.characterClass }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 <div class="row">
   <div class="col">
     <button class="btn btn-primary" routerLink="/user/character/create">Neuen Charakter anlagen</button>
