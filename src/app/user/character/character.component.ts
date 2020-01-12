@@ -10,12 +10,14 @@ import { CharacterService } from './character.service';
 })
 export class CharacterComponent implements OnInit {
 
-  characters: Observable<Character[]>;
+  characters: Character[];
 
   constructor(private characterService: CharacterService) { }
 
   ngOnInit() {
-    this.characters = this.characterService.getUserCharacters();
+    this.characterService.getUserCharacters().subscribe(
+      characters => this.characters = characters
+    );
   }
 
 }
