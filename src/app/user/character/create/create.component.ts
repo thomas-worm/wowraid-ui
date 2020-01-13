@@ -20,7 +20,7 @@ export class CharacterCreateComponent implements OnInit {
 
   character = new FormGroup({
     realm: new FormControl({value: null, disabled: true}, Validators.required),
-    characterName: new FormControl({value: '', disabled: false}, Validators.required),
+    name: new FormControl({value: '', disabled: false}, Validators.required),
     faction: new FormControl({value: null, disabled: true}, Validators.required),
     race: new FormControl({value: null, disabled: true}, Validators.required),
     class: new FormControl({value: null, disabled: true}, Validators.required)
