@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { CREATED, SEE_OTHER } from 'http-status-codes';
+import { OK, CREATED, SEE_OTHER } from 'http-status-codes';
 import { Router } from '@angular/router';
 import { CharacterService } from '../character.service';
 
@@ -153,7 +153,7 @@ export class CharacterCreateComponent implements OnInit {
       if (response.status == CREATED) {
         this.characterService.getUserCharacters();
         this.router.navigate(['/user/characters']);
-      } else if (response.status == SEE_OTHER) {
+      } else if (response.status == SEE_OTHER || response.status == OK) {
         alert('Der Charakter wurde bereits von jemand anderem angelegt!');
       } else {
         alert('Es ist ein Fehler aufgetreten. Wende dich an die Raidleitung.');
