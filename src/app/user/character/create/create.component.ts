@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { CREATED, SEE_OTHER } from 'http-status-codes';
+import { Router } from '@angular/router';
+import { CharacterService } from '../character.service';
 
 @Component({
   selector: 'app-create',
@@ -26,7 +29,7 @@ export class CharacterCreateComponent implements OnInit {
     class: new FormControl({value: null, disabled: true}, Validators.required)
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router, private characterService: CharacterService) { }
 
   ngOnInit() {
     this.realmsLoading = true;
@@ -143,7 +146,19 @@ export class CharacterCreateComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    console.log(this.character.value);
+    this.http.post('https://wowraid-api.herokuapp.com/user/character', this.character.value, {
+      observe:'response',
+      withCredentials: true
+    }).subscribe(response => {
+      if (response.status == CREATED) {
+        this.characterService.getUserCharacters();
+        this.router.navigate(['/user/characters']);
+      } else if (response.status == SEE_OTHER) {
+        alert('Der Charakter wurde bereits von jemand anderem angelegt!');
+      } else {
+        alert('Es ist ein Fehler aufgetreten. Wende dich an die Raidleitung.');
+      }
+    });
   }
 
 }
