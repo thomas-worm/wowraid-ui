@@ -154,7 +154,7 @@ export class CharacterCreateComponent implements OnInit {
         this.characterService.getUserCharacters();
         this.router.navigate(['/user/characters']);
       } else if (response.status == SEE_OTHER || response.status == OK) {
-        alert('Der Charakter wurde bereits von jemand anderem angelegt!');
+        alert('Der Charakter wurde bereits von jemand angelegt!');
       } else {
         alert('Es ist ein Fehler aufgetreten. Wende dich an die Raidleitung.');
       }
