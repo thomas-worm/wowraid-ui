@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col mb5">
+    <h1>Raidtermine</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <p>Die Anmeldung zu den Raidterminen erfolgt derzeit noch in unserer Battle.net-Gruppe.
+    Die Anmeldungen werden derzeit in einer
+    <a href="https://docs.google.com/spreadsheets/d/1L9aJFPj-9ezdV0TYzOAT3cg3ToEI76wzjBiTwxNYMlU/edit?usp=sharing">Tabelle</a>
+    zusammengefasst. Sp&auml;ter wird die Anmeldung direkt hier auf der Homepage erfolgen.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Start</th>
+          <th scope="col">Ende</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let raid of raids">
+          <td>{{ raid.name }}</td>
+          <td>{{ raid.start_datetime | date 'dd.MM.yyyy, hh:mm'}}</td>
+          <td>{{ raid.finish_datetime | date 'dd.MM.yyyy, hh:mm'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

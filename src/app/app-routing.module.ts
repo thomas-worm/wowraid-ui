@@ -23,6 +23,7 @@ import { SulfuronMcGuideComponent } from './guide/mc/sulfuron/sulfuron.component
 import { GolemaggMcGuideComponent } from './guide/mc/golemagg/golemagg.component';
 import { MajordomusMcGuideComponent } from './guide/mc/majordomus/majordomus.component';
 import { RagnarosMcGuideComponent } from './guide/mc/ragnaros/ragnaros.component';
+import { RaidComponent } from './raid/raid.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'anmeldung', component: AnmeldungComponent },
   { path: 'aufstellung', component: AufstellungComponent, canActivate: [ AuthGuardService ] },
   { path: 'lootregeln', component: LootregelnComponent },
+  { path: 'raids', component: RaidComponent, canActivate: [ AuthGuardService ] },
   { path: 'guide', component: GuideComponent },
   { path: 'guide/mc', component: McGuideComponent },
   { path: 'guide/mc/lucifron', component: LucifronMcGuideComponent },
