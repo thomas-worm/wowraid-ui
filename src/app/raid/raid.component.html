@@ -24,8 +24,8 @@
       <tbody>
         <tr *ngFor="let raid of raids">
           <td>{{ raid.name }}</td>
-          <td>{{ raid.start_datetime | date:'dd.MM.yyyy, hh:mm U\\hr' }}</td>
-          <td>{{ raid.finish_datetime | date:'dd.MM.yyyy, hh:mm U\\hr' }}</td>
+          <td>{{ raid.start_datetime | date:'dd.MM.yyyy, hh:mm "Uhr"' }}</td>
+          <td>{{ raid.finish_datetime | date:'dd.MM.yyyy, hh:mm "Uhr"' }}</td>
         </tr>
       </tbody>
     </table>
