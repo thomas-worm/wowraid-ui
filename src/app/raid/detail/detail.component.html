@@ -1,0 +1,16 @@
+<div class="row mb5">
+  <div class="col">
+    <h1>{{ raid.name }}</h1>
+  </div>
+</div>
+<div class="row mb5">
+  <div class="col">
+    <p>Start: {{ raid.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+  </div>
+  <div class="col">
+    <p>Ende: {{ raid.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col" [innerHtml]="raid.description"></div>
+</div>

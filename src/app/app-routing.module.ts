@@ -24,6 +24,7 @@ import { GolemaggMcGuideComponent } from './guide/mc/golemagg/golemagg.component
 import { MajordomusMcGuideComponent } from './guide/mc/majordomus/majordomus.component';
 import { RagnarosMcGuideComponent } from './guide/mc/ragnaros/ragnaros.component';
 import { RaidComponent } from './raid/raid.component';
+import { RaidDetailComponent } from './raid/detail/detail.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'aufstellung', component: AufstellungComponent, canActivate: [ AuthGuardService ] },
   { path: 'lootregeln', component: LootregelnComponent },
   { path: 'raids', component: RaidComponent, canActivate: [ AuthGuardService ] },
+  { path: 'raid/:key', component: RaidDetailComponent, canActivate: [ AuthGuardService ] },
   { path: 'guide', component: GuideComponent },
   { path: 'guide/mc', component: McGuideComponent },
   { path: 'guide/mc/lucifron', component: LucifronMcGuideComponent },

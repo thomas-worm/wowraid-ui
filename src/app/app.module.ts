@@ -29,6 +29,7 @@ import { RagnarosMcGuideComponent } from './guide/mc/ragnaros/ragnaros.component
 import { DecursiveAddonGuideComponent } from './guide/addon/decursive/decursive.component';
 import { OnyxiaGuideComponent } from './guide/onyxia/onyxia.component';
 import { RaidComponent } from './raid/raid.component';
+import { RaidDetailComponent } from './raid/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { RaidComponent } from './raid/raid.component';
     RagnarosMcGuideComponent,
     DecursiveAddonGuideComponent,
     OnyxiaGuideComponent,
-    RaidComponent
+    RaidComponent,
+    RaidDetailComponent
   ],
   imports: [
     BrowserModule,

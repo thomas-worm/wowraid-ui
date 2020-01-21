@@ -23,7 +23,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let raid of raids">
-          <td>{{ raid.name }}</td>
+          <td><a [routerLink]=" '/raid/' + raid.key ">{{ raid.name }}</a></td>
           <td>{{ raid.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</td>
           <td>{{ raid.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</td>
         </tr>
