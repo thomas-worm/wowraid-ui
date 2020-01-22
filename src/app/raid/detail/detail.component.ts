@@ -23,12 +23,12 @@ export class RaidDetailComponent implements OnInit {
     });
   }
 
-  filterInstanceEvent(event: RaidEvent) {
-    return event.categories.includes('instance');
+  filterInstances(event: RaidEvent): RaidEvent[] {
+    return event.childs.filter(child => child.categories.includes('instance'));
   }
 
-  filterBossEvent(event: RaidEvent) {
-    return event.categories.includes('boss');
+  filterBosses(event: RaidEvent): RaidEvent[] {
+    return event.childs.filter(child => child.categories.includes('boss'));
   }
 
 }
