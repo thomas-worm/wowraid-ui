@@ -14,3 +14,30 @@
 <div class="row">
   <div class="col" [innerHtml]="raid.description"></div>
 </div>
+<div class="row" *ngFor="let instance of raid.childs.filter(child => child.categories.includes('instance'))">
+  <div class="col">
+    <div class="row">
+      <div class="col">
+        <h2>{{ instance.name }}</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>Start: {{ instance.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }},
+        Ende: {{ instance.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col" [innerHtml]="instance.description"></div>
+    </div>
+    <div class="row" *ngFor="let boss of instance.childs.filter(child => child.categories.includes('boss'))">
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            <h3>{{ boss.name }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RaidEvent } from '../../model/raidevent.model';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ChildActivationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-detail',

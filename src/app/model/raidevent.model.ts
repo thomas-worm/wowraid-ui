@@ -5,6 +5,7 @@ export class RaidEvent {
     public description: string,
     public start_datetime: Date,
     public finish_datetime: Date,
-    public categories: string[]
+    public categories: string[],
+    public childs: RaidEvent[]
   ) {}
 }
