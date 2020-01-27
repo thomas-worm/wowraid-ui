@@ -1,55 +1,60 @@
-<div class="row mb5">
-  <div class="col">
-    <h1>{{ raid.name }}</h1>
-  </div>
+<div class="spinner-border" role="status" *ngIf="loading">
+  <span class="sr-only">Loading...</span>
 </div>
-<div class="row mb5">
-  <div class="col">
-    <p>Start: {{ raid.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+<div *ngIf="!loading">
+  <div class="row mb5">
+    <div class="col">
+      <h1>{{ raid.name }}</h1>
+    </div>
   </div>
-  <div class="col">
-    <p>Ende: {{ raid.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+  <div class="row mb5">
+    <div class="col">
+      <p>Start: {{ raid.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+    </div>
+    <div class="col">
+      <p>Ende: {{ raid.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col" [innerHtml]="raid.description"></div>
-</div>
-<div class="row" *ngIf="raid && raid.attendees && raid.attendees.length > 0">
-  <div class="col">
-    <h2>Teilnehmer</h2>
+  <div class="row">
+    <div class="col" [innerHtml]="raid.description"></div>
   </div>
-</div>
-<div class="row" *ngIf="raid && raid.attendees && raid.attendees.length > 0">
-  <div class="col">
-    <raid-attendee-list [attendees]="raid.attendees"></raid-attendee-list>
+  <div class="row" *ngIf="raid && raid.attendees && raid.attendees.length > 0">
+    <div class="col">
+      <h2>Teilnehmer</h2>
+    </div>
   </div>
-</div>
-<div class="row" *ngIf="filterInstances(raid).length > 0">
-  <div class="col">
-    <h2>Instanzen</h2>
+  <div class="row" *ngIf="raid && raid.attendees && raid.attendees.length > 0">
+    <div class="col">
+      <raid-attendee-list [attendees]="raid.attendees"></raid-attendee-list>
+    </div>
   </div>
-</div>
-<div class="row" *ngFor="let instance of filterInstances(raid)">
-  <div class="col">
-    <div class="row">
-      <div class="col">
-        <h3>{{ instance.name }}</h3>
+  <div class="row" *ngIf="filterInstances(raid).length > 0">
+    <div class="col">
+      <h2>Instanzen</h2>
+    </div>
+  </div>
+  <div class="row" *ngFor="let instance of filterInstances(raid)">
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <h3>{{ instance.name }}</h3>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <p>Start: {{ instance.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }},
-        Ende: {{ instance.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+      <div class="row">
+        <div class="col">
+          <p>Start: {{ instance.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }},
+          Ende: {{ instance.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col" [innerHtml]="instance.description"></div>
-    </div>
-    <div class="row" *ngFor="let boss of filterBosses(instance)">
-      <div class="col">
-        <div class="row">
-          <div class="col">
-            <h4>{{ boss.name }}</h4>
+      <div class="row">
+        <div class="col" [innerHtml]="instance.description"></div>
+      </div>
+      <div class="row" *ngFor="let boss of filterBosses(instance)">
+        <div class="col">
+          <div class="row">
+            <div class="col">
+              <h4>{{ boss.name }}</h4>
+            </div>
           </div>
         </div>
       </div>

@@ -10,11 +10,15 @@ import { RaidService } from './raid.service';
 export class RaidComponent implements OnInit {
 
   raids: RaidEvent[];
+  loading: boolean = true;
 
   constructor(private raidService: RaidService) { }
 
   ngOnInit() {
-    this.raidService.getRaids().subscribe(events => this.raids = events.sort(this.sortRaids));
+    this.raidService.getRaids().subscribe(events => {
+      this.raids = events.sort(this.sortRaids);
+      this.loading = false;
+    });
   }
 
   sortRaids(a: RaidEvent, b: RaidEvent): number {

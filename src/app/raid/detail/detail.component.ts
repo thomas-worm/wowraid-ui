@@ -11,6 +11,7 @@ import { ActivatedRoute, ChildActivationEnd } from '@angular/router';
 export class RaidDetailComponent implements OnInit {
 
   private raid: RaidEvent;
+  private loading: boolean = true;
 
   constructor(
     private http: HttpClient,
@@ -19,7 +20,11 @@ export class RaidDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(p => {
-      this.http.get<RaidEvent>('https://wowraid-api.herokuapp.com/event/' + p['key'], {withCredentials: true}).subscribe(result => this.raid = result);
+      this.loading = true;
+      this.http.get<RaidEvent>('https://wowraid-api.herokuapp.com/event/' + p['key'], {withCredentials: true}).subscribe(result => {
+        this.raid = result;
+        this.loading = false;
+      });
     });
   }
 
