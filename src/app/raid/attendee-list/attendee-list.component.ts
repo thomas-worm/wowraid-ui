@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EventAttendee } from 'src/app/model/eventattendee.model';
 
 @Component({
@@ -38,6 +38,7 @@ export class RaidAttendeeListComponent implements OnInit {
     });
   }
 
+  @Input()
   set attendees(attendees: EventAttendee[]) {
     this._attendees = attendees;
     this.druids = this.filterClass(attendees, 'druid');
