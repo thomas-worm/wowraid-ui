@@ -31,6 +31,7 @@ import { OnyxiaGuideComponent } from './guide/onyxia/onyxia.component';
 import { RaidComponent } from './raid/raid.component';
 import { RaidDetailComponent } from './raid/detail/detail.component';
 import { RaidAttendeeComponent } from './raid/attendee/attendee.component';
+import { RaidAttendeeListComponent } from './raid/attendee-list/attendee-list.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { RaidAttendeeComponent } from './raid/attendee/attendee.component';
     OnyxiaGuideComponent,
     RaidComponent,
     RaidDetailComponent,
-    RaidAttendeeComponent
+    RaidAttendeeComponent,
+    RaidAttendeeListComponent
   ],
   imports: [
     BrowserModule,

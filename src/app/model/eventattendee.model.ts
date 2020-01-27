@@ -5,7 +5,7 @@ export class EventAttendee {
     public character_faction: string,
     public character_race: string,
     public character_class: string,
-    public roles: string,
+    public roles: string[],
     public start_datetime: Date,
     public finish_datetime: Date,
   ) {}

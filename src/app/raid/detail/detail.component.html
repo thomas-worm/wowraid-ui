@@ -21,11 +21,7 @@
 </div>
 <div class="row" *ngIf="raid && raid.attendees && raid.attendees.length > 0">
   <div class="col">
-    <div class="row" *ngFor="let attendee of raid.attendees">
-      <div class="col">
-        <raid-attendee [attendee]="attendee"></raid-attendee>
-      </div>
-    </div>
+    <raid-attendee-list [attendees]="raid.attendees"></raid-attendee-list>
   </div>
 </div>
 <div class="row" *ngIf="filterInstances(raid).length > 0">
