@@ -1,13 +1,13 @@
 <ul class="nav nav-tabs" [id]="uuid + '-attendeesTabs'" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" [id]="'classes-' + uuid + '-tab'" data-toggle="tab" [href]="'#classes-' + uuid" role="tab" [aria-controls]="'classes-' + uuid" aria-selected="true">nach Klassen</a>
+    <a class="nav-link active" [id]="'classes-' + uuid + '-tab'" data-toggle="tab" [href]="'#classes-' + uuid" role="tab" [attr.aria-controls]="'classes-' + uuid" aria-selected="true">nach Klassen</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" [id]="'roles-' + uuid + '-tab'" data-toggle="tab" [href]="'#roles-' + uuid" role="tab" [aria-controls]="'roles-' + uuid" aria-selected="false">nach Rollen</a>
+    <a class="nav-link" [id]="'roles-' + uuid + '-tab'" data-toggle="tab" [href]="'#roles-' + uuid" role="tab" [attr.aria-controls]="'roles-' + uuid" aria-selected="false">nach Rollen</a>
   </li>
 </ul>
 <div class="tab-content" [id]="uuid + '-attendeesTabsContent'">
-  <div class="tab-pane fade show active" [id]="'classes-' + uuid" role="tabpanel" [aria-labelledby]="'classes-' + uuid + '-tab'">
+  <div class="tab-pane fade show active" [id]="'classes-' + uuid" role="tabpanel" [attr.aria-labelledby]="'classes-' + uuid + '-tab'">
     <div class="row">
       <div class="col" *ngIf="druids.length > 0">
         <div class="row">
@@ -59,7 +59,7 @@
       </div>
     </div>
   </div>
-  <div class="tab-pane fade" [id]="'roles-' + uuid" role="tabpanel" [aria-labelledby]="'roles-' + uuid + '-tab'">
+  <div class="tab-pane fade" [id]="'roles-' + uuid" role="tabpanel" [attr.aria-labelledby]="'roles-' + uuid + '-tab'">
     <div class="row">
       <div class="col" *ngIf="tanks.length > 0">
         <div class="row">
