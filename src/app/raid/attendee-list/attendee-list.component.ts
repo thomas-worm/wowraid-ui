@@ -64,11 +64,11 @@ export class RaidAttendeeListComponent implements OnInit {
   }
 
   private filterClass(attendees: EventAttendee[], characterClass: String): EventAttendee[] {
-    return attendees.filter(attendee => attendee.character_class.toLowerCase() == characterClass.toLowerCase());
+    return attendees.filter(attendee => attendee.character_class && attendee.character_class.toLowerCase() == characterClass.toLowerCase());
   }
 
   private filterRole(attendees: EventAttendee[], role: String): EventAttendee[] {
-    return attendees.filter(attendee => attendee.roles.filter(roleEntry => roleEntry.toLowerCase() == role.toLowerCase()).length > 0);
+    return attendees.filter(attendee => attendee.roles && attendee.roles.filter(roleEntry => roleEntry && roleEntry.toLowerCase() == role.toLowerCase()).length > 0);
   }
 
 }
