@@ -21,7 +21,7 @@
 </div>
 <div class="row" *ngIf="raid.attendees.length > 0">
   <div class="col">
-    <div class="row" *ngFor="let attendee for raid.attendees">
+    <div class="row" *ngFor="let attendee of raid.attendees">
       <div class="col">
         {{ attendee.name }}
       </div>
