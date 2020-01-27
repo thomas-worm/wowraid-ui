@@ -15,6 +15,7 @@ export class RaidComponent implements OnInit {
   constructor(private raidService: RaidService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.raidService.getRaids().subscribe(events => {
       this.raids = events.sort(this.sortRaids);
       this.loading = false;
