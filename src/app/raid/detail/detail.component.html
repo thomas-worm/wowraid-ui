@@ -23,7 +23,7 @@
   <div class="col">
     <div class="row" *ngFor="let attendee of raid.attendees">
       <div class="col">
-        {{ attendee.character_name }}
+        <raid-attendee [attendee]="attendee"></raid-attendee>
       </div>
     </div>
   </div>

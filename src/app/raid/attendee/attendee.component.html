@@ -1,0 +1,4 @@
+<img *ngIf="attendee.character_class" [src]="'/assets/icons/classes/' + attendee.character_class + '.png'" style="height: 1em;" />
+{{ attendee.character_name }}
+({{ attendee.start_datetime | date:'HH:mm' }}-{{ attendee.finish_datetime | date:'HH:mm' }} Uhr)
+<img *ngFor="role of attendee.roles" [src]="'/assets/icons/roles/' + role + '.jpg'" style="height: 1em;" />
