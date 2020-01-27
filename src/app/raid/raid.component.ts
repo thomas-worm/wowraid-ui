@@ -9,10 +9,12 @@ import { RaidService } from './raid.service';
 })
 export class RaidComponent implements OnInit {
 
-  raids: RaidEvent[];
-  loading: boolean = true;
+  private raids: RaidEvent[];
+  private loading: boolean = true;
 
-  constructor(private raidService: RaidService) { }
+  constructor(
+    private raidService: RaidService
+  ) { }
 
   ngOnInit() {
     this.loading = true;
