@@ -14,12 +14,12 @@
 <div class="row">
   <div class="col" [innerHtml]="raid.description"></div>
 </div>
-<div class="row" *ngIf="raid.attendees.length > 0">
+<div class="row" *ngIf="raid && raid.attendees && raid.attendees.length > 0">
   <div class="col">
     <h2>Teilnehmer</h2>
   </div>
 </div>
-<div class="row" *ngIf="raid.attendees.length > 0">
+<div class="row" *ngIf="raid && raid.attendees && raid.attendees.length > 0">
   <div class="col">
     <div class="row" *ngFor="let attendee of raid.attendees">
       <div class="col">
