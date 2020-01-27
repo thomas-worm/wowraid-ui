@@ -22,13 +22,6 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngIf="loading">
-          <td colspan="3">
-            <div class="spinner-border" role="status">
-              <span class="sr-only">Loading...</span>
-            </div>
-          </td>
-        </tr>
         <tr *ngFor="let raid of raids">
           <td><a [routerLink]=" '/raid/' + raid.key ">{{ raid.name }}</a></td>
           <td>{{ raid.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</td>
@@ -36,5 +29,8 @@
         </tr>
       </tbody>
     </table>
+    <div class="spinner-border" role="status" *ngIf="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
   </div>
 </div>
