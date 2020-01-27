@@ -45,6 +45,78 @@
           </div>
         </div>
       </div>
+      <div class="col" *ngIf="paladins.length > 0">
+        <div class="row">
+          <div class="col">
+            <strong>Paladin</strong>
+          </div>
+        </div>
+        <div class="row" *ngFor="let paladin of paladins">
+          <div class="col">
+            <raid-attendee [attendee]="paladin"></raid-attendee>
+          </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="priests.length > 0">
+        <div class="row">
+          <div class="col">
+            <strong>Priester</strong>
+          </div>
+        </div>
+        <div class="row" *ngFor="let priest of priests">
+          <div class="col">
+            <raid-attendee [attendee]="priest"></raid-attendee>
+          </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="rogues.length > 0">
+        <div class="row">
+          <div class="col">
+            <strong>Schurken</strong>
+          </div>
+        </div>
+        <div class="row" *ngFor="let rogue of rogues">
+          <div class="col">
+            <raid-attendee [attendee]="rogue"></raid-attendee>
+          </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="shamans.length > 0">
+        <div class="row">
+          <div class="col">
+            <strong>Schamanen</strong>
+          </div>
+        </div>
+        <div class="row" *ngFor="let shaman of shamans">
+          <div class="col">
+            <raid-attendee [attendee]="shaman"></raid-attendee>
+          </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="warlocks.length > 0">
+        <div class="row">
+          <div class="col">
+            <strong>Hexenmeister</strong>
+          </div>
+        </div>
+        <div class="row" *ngFor="let warlock of warlocks">
+          <div class="col">
+            <raid-attendee [attendee]="warlock"></raid-attendee>
+          </div>
+        </div>
+      </div>
+      <div class="col" *ngIf="warriors.length > 0">
+        <div class="row">
+          <div class="col">
+            <strong>Krieger</strong>
+          </div>
+        </div>
+        <div class="row" *ngFor="let warrior of warriors">
+          <div class="col">
+            <raid-attendee [attendee]="warrior"></raid-attendee>
+          </div>
+        </div>
+      </div>
       <div class="col" *ngIf="unknownClass.length > 0">
         <div class="row">
           <div class="col">
