@@ -14,11 +14,30 @@
 <div class="row">
   <div class="col" [innerHtml]="raid.description"></div>
 </div>
+<div class="row" *ngIf="raid.attendees.length > 0">
+  <div class="col">
+    <h2>Teilnehmer</h2>
+  </div>
+</div>
+<div class="row" *ngIf="raid.attendees.length > 0">
+  <div class="col">
+    <div class="row" *ngFor="let attendee for raid.attendees">
+      <div class="col">
+        {{ attendee.name }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="filterInstances(raid).length > 0">
+  <div class="col">
+    <h2>Instanzen</h2>
+  </div>
+</div>
 <div class="row" *ngFor="let instance of filterInstances(raid)">
   <div class="col">
     <div class="row">
       <div class="col">
-        <h2>{{ instance.name }}</h2>
+        <h3>{{ instance.name }}</h3>
       </div>
     </div>
     <div class="row">
@@ -34,7 +53,7 @@
       <div class="col">
         <div class="row">
           <div class="col">
-            <h3>{{ boss.name }}</h3>
+            <h4>{{ boss.name }}</h4>
           </div>
         </div>
       </div>
