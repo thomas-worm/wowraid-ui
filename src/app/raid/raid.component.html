@@ -29,7 +29,7 @@
         </tr>
       </tbody>
     </table>
-    <div class="spinner-border" role="status" *ngIf="loading">
+    <div class="spinner-border" role="status" *ngIf="loading | async">
       <span class="sr-only">Loading...</span>
     </div>
   </div>

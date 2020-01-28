@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { RaidEvent } from '../model/raidevent.model';
 import { RaidService } from './raid.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-raid',
@@ -10,7 +11,8 @@ import { RaidService } from './raid.service';
 export class RaidComponent implements OnInit {
 
   private raids: RaidEvent[];
-  private loading: boolean = true;
+  private _loading = new BehaviorSubject<boolean>(true);
+  private loading: Observable<boolean>;
 
   constructor(
     private raidService: RaidService,
@@ -18,16 +20,11 @@ export class RaidComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.changeDetector.detach();
-    this.changeDetector.reattach();
-    console.log(this.loading);
-    this.loading = true;
-    console.log(this.loading);
+    this.loading = this._loading.asObservable();
+    this._loading.next(true);
     this.raidService.getRaids().subscribe(events => {
       this.raids = events.sort(this.sortRaids);
-      console.log(this.loading);
-      this.loading = false;
-      console.log(this.loading);
+      this._loading.next(false);
     });
   }
 
