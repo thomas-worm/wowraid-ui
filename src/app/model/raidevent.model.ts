@@ -1,4 +1,5 @@
 import { EventAttendee } from './eventattendee.model';
+import { EventDrop } from './eventdrop.model';
 
 export class RaidEvent {
   constructor(
@@ -9,6 +10,7 @@ export class RaidEvent {
     public finish_datetime: Date,
     public categories: string[],
     public childs: RaidEvent[],
-    public attendees: EventAttendee[]
+    public attendees: EventAttendee[],
+    public drops: EventDrop[]
   ) {}
 }

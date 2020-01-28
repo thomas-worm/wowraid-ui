@@ -32,6 +32,9 @@ import { RaidComponent } from './raid/raid.component';
 import { RaidDetailComponent } from './raid/detail/detail.component';
 import { RaidAttendeeComponent } from './raid/attendee/attendee.component';
 import { RaidAttendeeListComponent } from './raid/attendee-list/attendee-list.component';
+import { CharacterDataComponent } from './data/character/character.component';
+import { ItemDataComponent } from './data/item/item.component';
+import { LootDataComponent } from './data/loot/loot.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { RaidAttendeeListComponent } from './raid/attendee-list/attendee-list.co
     RaidComponent,
     RaidDetailComponent,
     RaidAttendeeComponent,
-    RaidAttendeeListComponent
+    RaidAttendeeListComponent,
+    CharacterDataComponent,
+    ItemDataComponent,
+    LootDataComponent
   ],
   imports: [
     BrowserModule,

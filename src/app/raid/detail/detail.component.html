@@ -56,6 +56,20 @@
               <h4>{{ boss.name }}</h4>
             </div>
           </div>
+          <div class="row">
+            <div class="col">
+              <div class="row" *ngFor="let drop of boss.drops">
+                <div class="col">
+                  <data-loot
+                    [item-blizzard-identifier]="drop.item_blizzard_identifier"
+                    [item-name]="drop.item_name"
+                    [looter-name]="drop.looter_name"
+                    [looter-class]="drop.looter_class"
+                  ></data-loot>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

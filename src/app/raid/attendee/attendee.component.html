@@ -1,4 +1,3 @@
-<span class="text-nowrap"><img *ngIf="attendee.character_class" [src]="'/assets/icons/classes/' + attendee.character_class.toLowerCase() + '.png'" style="height: 1em;" />
-{{ attendee.character_name }}
+<data-character [character-class]="attendee.character_class" [character-name]="attendee.character_name"></data-character>
 ({{ attendee.start_datetime | date:'HH:mm' }}-{{ attendee.finish_datetime | date:'HH:mm' }} Uhr)
 <img *ngFor="let role of attendee.roles" [src]="'/assets/icons/roles/' + role.toLowerCase() + '.jpg'" style="height: 1em;" /></span>
