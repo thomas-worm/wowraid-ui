@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef  } from '@angular/core';
 import { RaidEvent } from '../model/raidevent.model';
 import { RaidService } from './raid.service';
 
@@ -13,10 +13,13 @@ export class RaidComponent implements OnInit {
   private loading: boolean = true;
 
   constructor(
-    private raidService: RaidService
+    private raidService: RaidService,
+    private changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
+    this.changeDetector.detach();
+    this.changeDetector.reattach();
     console.log(this.loading);
     this.loading = true;
     console.log(this.loading);
