@@ -17,10 +17,14 @@ export class RaidComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.loading);
     this.loading = true;
+    console.log(this.loading);
     this.raidService.getRaids().subscribe(events => {
       this.raids = events.sort(this.sortRaids);
+      console.log(this.loading);
       this.loading = false;
+      console.log(this.loading);
     });
   }
 
