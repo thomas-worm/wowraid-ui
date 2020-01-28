@@ -23,7 +23,7 @@ export class RaidComponent implements OnInit {
     this.loading = this._loading.asObservable();
     this._loading.next(true);
     this.raidService.getRaids().subscribe(events => {
-      this.raids = events.sort(this.sortRaids);
+      //this.raids = events.sort(this.sortRaids);
       //this._loading.next(false);
     });
   }
