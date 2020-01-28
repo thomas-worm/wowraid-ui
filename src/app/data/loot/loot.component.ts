@@ -9,8 +9,8 @@ export class LootDataComponent implements OnInit {
 
   @Input('item-blizzard-identifier') item_blizzard_identifier: number;
   @Input('item-name') item_name: string;
-  @Input('looter_name') looter_name: string;
-  @Input('looter_class') looter_class: string;
+  @Input('looter-name') looter_name: string;
+  @Input('looter-class') looter_class: string;
 
   constructor() { }
 
