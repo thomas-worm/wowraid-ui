@@ -1,1 +1,187 @@
-<p>create works!</p>
+<div class="row">
+  <div class="col">
+    <h1>Raid-Event anlegen</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="raid">
+      <div class="row">
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="key">Key:</label>
+            <input type="text"
+              formControlName="key"
+              class="form-control"
+              id="key"
+              placeholder="Key"
+              required="required" />
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="name">Name:</label>
+            <input type="text"
+              formControlName="name"
+              class="form-control"
+              id="name"
+              placeholder="Name"
+              required="required" />
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="start_date_time">Start:</label>
+            <input type="datetime-local"
+              formControlName="start_date_time"
+              class="form-control"
+              id="start_date_time"
+              required="required" />
+          </div>
+        </div>
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="finish_date_time">Ende:</label>
+            <input type="datetime-local"
+              formControlName="finish_date_time"
+              class="form-control"
+              id="finish_date_time"
+              required="required" />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div
+            class="ml-3 row"
+            formArrayName="instances"
+            *ngFor="let instance of raid.get('instances').controls; let i = index;">
+            <div class="col" [formGroupName]="i">
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="form-group">
+                    <label [for]="'key_i' + i">Key:</label>
+                    <input type="text"
+                      formControlName="key"
+                      class="form-control"
+                      [id]="'key_i' + i"
+                      placeholder="Key"
+                      required="required" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div
+                    class="form-group">
+                    <label [for]="'name_i' + i">Name:</label>
+                    <input type="text"
+                      formControlName="name"
+                      class="form-control"
+                      [id]="'name_i' + i"
+                      placeholder="Name"
+                      required="required" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div
+                    class="form-group">
+                    <label [for]="'start_date_time_i' + i">Start:</label>
+                    <input type="datetime-local"
+                      formControlName="start_date_time"
+                      class="form-control"
+                      [id]="'start_date_time_i' + i"
+                      required="required" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div
+                    class="form-group">
+                    <label [for]="'finish_date_time_i' + i">Ende:</label>
+                    <input type="datetime-local"
+                      formControlName="finish_date_time"
+                      class="form-control"
+                      [id]="'finish_date_time_i' + i"
+                      required="required" />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="ml-3 row"
+                    formArrayName="bosses"
+                    *ngFor="let boss of instance.get('bosses').controls; let j = index;">
+                    <div class="col">
+                      <div class="row" [formGroupName]="j">
+                        <div class="col">
+                          <div
+                            class="form-group">
+                            <label [for]="'key_j' + j">Key:</label>
+                            <input type="text"
+                              formControlName="key"
+                              class="form-control"
+                              [id]="'key_j' + j"
+                              placeholder="Key"
+                              required="required" />
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div
+                            class="form-group">
+                            <label [for]="'name_j' + j">Name:</label>
+                            <input type="text"
+                              formControlName="name"
+                              class="form-control"
+                              [id]="'name_j' + j"
+                              placeholder="Name"
+                              required="required" />
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div
+                            class="form-group">
+                            <label [for]="'start_date_time_j' + J">Start:</label>
+                            <input type="datetime-local"
+                              formControlName="start_date_time"
+                              class="form-control"
+                              [id]="'start_date_time_j' + j"
+                              required="required" />
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div
+                            class="form-group">
+                            <label [for]="'finish_date_time_j' + j">Ende:</label>
+                            <input type="datetime-local"
+                              formControlName="finish_date_time"
+                              class="form-control"
+                              [id]="'finish_date_time_j' + j"
+                              required="required" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <button class="btn" (onclick)="addBossFormGroup(i)">Instanz hinzuf&uuml;gen</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button class="btn" (onclick)="addInstanceFormGroup()">Instanz hinzuf&uuml;gen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
