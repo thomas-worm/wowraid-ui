@@ -49,4 +49,8 @@ export class CreateRaidEventComponent implements OnInit {
     ((this.raid.get('instances') as FormArray).controls[instance].get('bosses') as FormArray).push(this.createBossFormGroup());
   }
 
+  onSubmit() {
+    console.log(this.raid.value);
+  }
+
 }

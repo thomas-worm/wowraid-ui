@@ -5,7 +5,7 @@
 </div>
 <div class="row">
   <div class="col">
-    <form [formGroup]="raid">
+    <form [formGroup]="raid" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col">
           <div
@@ -168,7 +168,7 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <button class="btn" (onclick)="addBossFormGroup(i)">Instanz hinzuf&uuml;gen</button>
+                      <button class="btn" (click)="addBossFormGroup(i)">Instanz hinzuf&uuml;gen</button>
                     </div>
                   </div>
                 </div>
@@ -177,9 +177,14 @@
           </div>
           <div class="row">
             <div class="col">
-              <button class="btn" (onclick)="addInstanceFormGroup()">Instanz hinzuf&uuml;gen</button>
+              <button class="btn" (click)="addInstanceFormGroup()">Instanz hinzuf&uuml;gen</button>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary">Anlegen</button>
         </div>
       </div>
     </form>
