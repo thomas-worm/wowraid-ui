@@ -11,6 +11,7 @@ export class AppComponent {
   title = 'wowraid-ui';
   authenticated: boolean = false;
   username: string;
+  groups: string[] = [];
 
   constructor(private authService: AuthService) { }
 
@@ -23,6 +24,7 @@ export class AppComponent {
     this.authService.getUser().subscribe(
       user => {
         this.username = user.battleTag;
+        this.groups = user.groups;
       }
     )
   }

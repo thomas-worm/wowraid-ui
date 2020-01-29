@@ -25,6 +25,9 @@ import { MajordomusMcGuideComponent } from './guide/mc/majordomus/majordomus.com
 import { RagnarosMcGuideComponent } from './guide/mc/ragnaros/ragnaros.component';
 import { RaidComponent } from './raid/raid.component';
 import { RaidDetailComponent } from './raid/detail/detail.component';
+import { AdminComponent } from './admin/admin.component';
+import { RaidEventComponent } from './admin/event/raid/raid.component';
+import { CreateRaidEventComponent } from './admin/event/raid/create/create.component';
 
 
 const routes: Routes = [
@@ -52,6 +55,9 @@ const routes: Routes = [
   { path: 'user', component: UserComponent, canActivate: [ AuthGuardService ] },
   { path: 'user/characters', component: CharacterComponent, canActivate: [ AuthGuardService ] },
   { path: 'user/character/create', component: CharacterCreateComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin', component: AdminComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin/raids', component: RaidEventComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin/raid/create', component: CreateRaidEventComponent, canActivate: [ AuthGuardService ] },
   { path: '**', redirectTo: '/' }
 ];
 

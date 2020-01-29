@@ -35,6 +35,9 @@ import { RaidAttendeeListComponent } from './raid/attendee-list/attendee-list.co
 import { CharacterDataComponent } from './data/character/character.component';
 import { ItemDataComponent } from './data/item/item.component';
 import { LootDataComponent } from './data/loot/loot.component';
+import { AdminComponent } from './admin/admin.component';
+import { RaidEventComponent } from './admin/event/raid/raid.component';
+import { CreateRaidEventComponent } from './admin/event/raid/create/create.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,10 @@ import { LootDataComponent } from './data/loot/loot.component';
     RaidAttendeeListComponent,
     CharacterDataComponent,
     ItemDataComponent,
-    LootDataComponent
+    LootDataComponent,
+    AdminComponent,
+    RaidEventComponent,
+    CreateRaidEventComponent
   ],
   imports: [
     BrowserModule,

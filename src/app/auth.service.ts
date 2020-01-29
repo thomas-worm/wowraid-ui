@@ -9,7 +9,7 @@ import { User } from './model/user.model';
 })
 export class AuthService {
 
-  private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, null, false));
+  private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, null, false, []));
 
   constructor(private http: HttpClient) {
   }
