@@ -88,8 +88,7 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
       form.finish_date_time
     );
     console.log(attendee);
-    let recusrive: boolean =
-      (this.attendeeForm.controls.event && this.attendeeForm.controls.event.value);
+    let recusrive: boolean = (form.event != null && form.event);
     console.log(recusrive);
     this.http.post('https://wowraid-api.herokuapp.com/event/' + this.attendeeForm.controls.event.value + '/attendee' + (recusrive ? '?recursive=true' : ''), attendee, {
       observe:'response',
