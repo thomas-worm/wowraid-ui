@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Character } from 'src/app/model/character.model';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { EventAttendee } from 'src/app/model/eventattendee.model';
+import { CREATED } from 'http-status-codes';
 
 @Component({
   selector: 'app-create',
@@ -87,6 +88,19 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
       form.finish_date_time
     );
     console.log(attendee);
+    let recusrive: boolean =
+      (this.attendeeForm.controls.event && this.attendeeForm.controls.event.value);
+    console.log(recusrive);
+    this.http.post('https://wowraid-api.herokuapp.com/event/' + this.attendeeForm.controls.event.value + '/attendee' + (recusrive ? '?recursive=true' : ''), attendee, {
+      observe:'response',
+      withCredentials: true
+    }).subscribe(response => {
+      if (response.status == CREATED) {
+        alert('Success');
+      } else {
+        alert('Es ist ein Fehler aufgetreten. Wende dich an die Raidleitung.');
+      }
+    });
   }
 
 }
