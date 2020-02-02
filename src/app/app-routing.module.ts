@@ -61,7 +61,7 @@ const routes: Routes = [
   { path: 'admin/raids', component: RaidEventComponent, canActivate: [ AuthGuardService ] },
   { path: 'admin/raid/create', component: CreateRaidEventComponent, canActivate: [ AuthGuardService ] },
   { path: 'admin/attendees', component: EventAttendeeAdminComponent, canActivate: [ AuthGuardService ] },
-  { path: 'admin/attendee', component: EventAttendeeAdminCreateComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin/attendee/create', component: EventAttendeeAdminCreateComponent, canActivate: [ AuthGuardService ] },
   { path: '**', redirectTo: '/' }
 ];
 
