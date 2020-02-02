@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { RaidEvent } from 'src/app/model/raidevent.model';
 import { HttpClient } from '@angular/common/http';
 import { Character } from 'src/app/model/character.model';
+import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 @Component({
   selector: 'app-create',
@@ -16,7 +17,7 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
     recursive: new FormControl(),
     character: new FormControl(),
     start_date_time: new FormControl(),
-    end_date_time: new FormControl(),
+    finish_date_time: new FormControl(),
     roles: new FormControl(),
   });
 
@@ -53,6 +54,20 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
       return a.realm.localeCompare(b.realm);
     } else {
       return cmp;
+    }
+  }
+
+  suggestDateTimes() {
+    if (this.attendeeForm.controls.key.value) {
+      let event: RaidEvent = this.events.find(event => event.key = this.attendeeForm.controls.key.value);
+      if (event) {
+        if (!this.attendeeForm.controls.start_date_time.value) {
+          this.attendeeForm.controls.start_date_time.setValue(event.start_datetime);
+        }
+        if (!this.attendeeForm.controls.finish_date_time.value) {
+          this.attendeeForm.controls.finish_date_time.setValue(event.finish_datetime);
+        }
+      }
     }
   }
 

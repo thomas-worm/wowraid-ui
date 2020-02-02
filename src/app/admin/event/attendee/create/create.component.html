@@ -16,6 +16,7 @@
               formControlName="event"
               class="custom-select form-control"
               placeholder="Event"
+              (change)="suggestDateTimes()"
               required="required">
               <option *ngFor="let event of events" [value]="event.key">{{ event.key }} ({{ event.name }})</option>
             </select>
