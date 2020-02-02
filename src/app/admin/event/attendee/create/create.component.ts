@@ -4,6 +4,7 @@ import { RaidEvent } from 'src/app/model/raidevent.model';
 import { HttpClient } from '@angular/common/http';
 import { Character } from 'src/app/model/character.model';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { EventAttendee } from 'src/app/model/eventattendee.model';
 
 @Component({
   selector: 'app-create',
@@ -73,6 +74,15 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
 
   onSubmit() {
     console.log(this.attendeeForm.value);
+    let attendee: EventAttendee = this.attendeeForm.value.map(form => {
+      let characterinfo: string[] = form.character.split(',');
+      attendee.character_name = characterinfo[1];
+      attendee.character_realm = characterinfo[0];
+      attendee.start_datetime = form.start_date_time;
+      attendee.finish_datetime = form.finish_date_time;
+      attendee.roles = (form.roles) ? form.roles : [];
+    });
+    console.log(attendee);
   }
 
 }
