@@ -23,7 +23,7 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
 
   events: RaidEvent[];
   characters: Character[];
-  roles: string[] = ['tank', 'Heal', 'melee', 'ranged'];
+  roles: string[] = ['tank', 'heal', 'melee', 'ranged'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -58,8 +58,8 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
   }
 
   suggestDateTimes() {
-    if (this.attendeeForm.controls.key.value) {
-      let event: RaidEvent = this.events.find(event => event.key = this.attendeeForm.controls.key.value);
+    if (this.attendeeForm.controls.event.value) {
+      let event: RaidEvent = this.events.find(event => event.key = this.attendeeForm.controls.event.value);
       if (event) {
         if (!this.attendeeForm.controls.start_date_time.value) {
           this.attendeeForm.controls.start_date_time.setValue(event.start_datetime);
