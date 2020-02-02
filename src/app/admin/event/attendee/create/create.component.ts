@@ -74,14 +74,18 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
 
   onSubmit() {
     console.log(this.attendeeForm.value);
-    let attendee: EventAttendee = this.attendeeForm.value.map(form => {
-      let characterinfo: string[] = form.character.split(',');
-      attendee.character_name = characterinfo[1];
-      attendee.character_realm = characterinfo[0];
-      attendee.start_datetime = form.start_date_time;
-      attendee.finish_datetime = form.finish_date_time;
-      attendee.roles = (form.roles) ? form.roles : [];
-    });
+    let form = this.attendeeForm.value;
+    let characterinfo: string[] = form.character.split(',');
+    let attendee: EventAttendee = new EventAttendee(
+      characterinfo[1],
+      characterinfo[0],
+      null,
+      null,
+      null,
+      (form.roles) ? form.roles : [],
+      form.start_date_time,
+      form.finish_date_time
+    );
     console.log(attendee);
   }
 
