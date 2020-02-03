@@ -44,6 +44,7 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
           rawCharacter.faction
         )).sort(this.sortCharacters);
     });
+    this.attendeeForm.controls.event.valueChanges.subscribe(value => this.suggestDateTimes(value, this.attendeeForm));
   }
 
   sortEvents(a: RaidEvent, b: RaidEvent): number {
@@ -59,15 +60,15 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
     }
   }
 
-  suggestDateTimes() {
-    if (this.attendeeForm.controls.event.value) {
-      let event: RaidEvent = this.events.find(event => event.key = this.attendeeForm.controls.event.value);
+  suggestDateTimes(key: string, form: FormGroup) {
+    if (key) {
+      let event: RaidEvent = this.events.find(event => event.key = key);
       if (event) {
-        if (!this.attendeeForm.controls.start_date_time.value) {
-          this.attendeeForm.controls.start_date_time.setValue(event.start_datetime);
+        if (!form.controls.start_date_time.value) {
+          form.controls.start_date_time.setValue(event.start_datetime);
         }
-        if (!this.attendeeForm.controls.finish_date_time.value) {
-          this.attendeeForm.controls.finish_date_time.setValue(event.finish_datetime);
+        if (!form.controls.finish_date_time.value) {
+          form.controls.finish_date_time.setValue(event.finish_datetime);
         }
       }
     }
