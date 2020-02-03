@@ -62,7 +62,7 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
 
   suggestDateTimes(key: string, form: FormGroup) {
     if (key) {
-      let event: RaidEvent = this.events.find(event => event.key = key);
+      let event: RaidEvent = this.events.find(event => event.key == key);
       if (event) {
         if (!form.controls.start_date_time.value) {
           form.controls.start_date_time.setValue(event.start_datetime);
