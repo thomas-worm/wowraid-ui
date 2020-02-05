@@ -40,6 +40,7 @@ import { RaidEventComponent } from './admin/event/raid/raid.component';
 import { CreateRaidEventComponent } from './admin/event/raid/create/create.component';
 import { EventAttendeeAdminComponent } from './admin/event/attendee/attendee.component';
 import { EventAttendeeAdminCreateComponent } from './admin/event/attendee/create/create.component';
+import { EpgpComponent } from './epgp/epgp.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { EventAttendeeAdminCreateComponent } from './admin/event/attendee/create
     RaidEventComponent,
     CreateRaidEventComponent,
     EventAttendeeAdminComponent,
-    EventAttendeeAdminCreateComponent
+    EventAttendeeAdminCreateComponent,
+    EpgpComponent
   ],
   imports: [
     BrowserModule,

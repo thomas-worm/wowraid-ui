@@ -21,7 +21,7 @@
           <th scope="col">Ende</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="raids.length > 0">
         <tr *ngFor="let raid of raids">
           <td><a [routerLink]=" '/raid/' + raid.key ">{{ raid.name }}</a></td>
           <td>{{ raid.start_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</td>

@@ -30,6 +30,7 @@ import { RaidEventComponent } from './admin/event/raid/raid.component';
 import { CreateRaidEventComponent } from './admin/event/raid/create/create.component';
 import { EventAttendeeAdminComponent } from './admin/event/attendee/attendee.component';
 import { EventAttendeeAdminCreateComponent } from './admin/event/attendee/create/create.component';
+import { EpgpComponent } from './epgp/epgp.component';
 
 
 const routes: Routes = [
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'lootregeln', component: LootregelnComponent },
   { path: 'raids', component: RaidComponent, canActivate: [ AuthGuardService ] },
   { path: 'raid/:key', component: RaidDetailComponent, canActivate: [ AuthGuardService ] },
+  { path: 'epgp', component: EpgpComponent, canActivate: [ AuthGuardService ] },
   { path: 'guide', component: GuideComponent },
   { path: 'guide/mc', component: McGuideComponent },
   { path: 'guide/mc/lucifron', component: LucifronMcGuideComponent },

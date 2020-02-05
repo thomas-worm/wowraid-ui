@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col">
+    <h1>Lootsystem: EPGP</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          Benutzer
+        </tr>
+        <tr>
+          EffortPoints
+        </tr>
+        <tr>
+          GearPoints
+        </tr>
+        <tr>
+          Priorität
+        </tr>
+      </thead>
+      <tbody *ngIf="epgp.length > 0">
+        <tr *ngFor="let entry of epgp">
+          <td>
+            {{ entry.battle_net }}
+          </td>
+          <td>
+            {{ entry.effort_points }}
+          </td>
+          <td>
+            {{ entry.gear_points }}
+          </td>
+          <td>
+            {{ entry.priority }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="spinner-border" role="status" *ngIf="loading">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>
