@@ -11,7 +11,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class RaidComponent implements OnInit {
 
   private raids: RaidEvent[] = [];
-  private _loading = new BehaviorSubject<boolean>(true);
+  private _loading = new BehaviorSubject<boolean>(false);
   private loading: Observable<boolean>;
 
   constructor(
