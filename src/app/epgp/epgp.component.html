@@ -28,10 +28,14 @@
             {{ entry.battle_tag }}
           </td>
           <td>
-            {{ entry.effort_points }}
+            <a [rouerLink]="'/epgp/account/' + entry.effort_points_account">
+              {{ entry.effort_points }}
+            </a>
           </td>
           <td>
-            {{ entry.gear_points }}
+            <a [routerLink]="'/epgp/account/' + entry.gear_points_account">
+              {{ entry.gear_points }}
+            </a>
           </td>
           <td>
             {{ entry.priority }}
