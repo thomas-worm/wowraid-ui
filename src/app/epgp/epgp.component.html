@@ -8,22 +8,24 @@
     <table class="table">
       <thead>
         <tr>
-          Benutzer
-        </tr>
-        <tr>
-          EffortPoints
-        </tr>
-        <tr>
-          GearPoints
-        </tr>
-        <tr>
-          Priorität
+          <th>
+            Benutzer
+          </th>
+          <th>
+            EffortPoints
+          </th>
+          <th>
+            GearPoints
+          </th>
+          <th>
+            Priorität
+          </th>
         </tr>
       </thead>
       <tbody *ngIf="epgp.length > 0">
         <tr *ngFor="let entry of epgp">
           <td>
-            {{ entry.battle_net }}
+            {{ entry.battle_tag }}
           </td>
           <td>
             {{ entry.effort_points }}
