@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col">
+    <h1>
+      Kontodetails
+    </h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            Zeitpunkt
+          </th>
+          <th scope="col">
+            Verwendungszweck
+          </th>
+          <th scope="col">
+            Betrag
+          </th>
+        </tr>
+      </thead>
+      <tbody *ngIf="transactions.length > 0">
+        <tr *ngFor="let transaction of transactions">
+          <td>
+            {{ transaction.date_time | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}
+          </td>
+          <td>
+            {{ transaction.title }}
+          </td>
+          <td>
+            {{ transaction.value }} {{ transaction.currency }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
