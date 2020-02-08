@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { User } from './model/user.model';
-import { APIURL } from './config.service';
+import { ConfigService } from './config.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +12,17 @@ export class AuthService {
 
   private user: BehaviorSubject<User> = new BehaviorSubject(new User(null, null, false, []));
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(
+    private http: HttpClient,
+    private configService: ConfigService
+  ) {  }
 
   isAuthenticated(): Observable<boolean> {
-    return this.http.get<boolean>(APIURL + '/user/authenticated', {withCredentials: true});
+    return this.http.get<boolean>(this.configService.APIURL + '/user/authenticated', {withCredentials: true});
   }
 
   getUser(): Observable<User> {
-    this.http.get<User>(APIURL + '/user', {withCredentials: true}).subscribe(user => this.user.next(user));
+    this.http.get<User>(this.configService.APIURL + '/user', {withCredentials: true}).subscribe(user => this.user.next(user));
     return this.user.asObservable();
   }
 

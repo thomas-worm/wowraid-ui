@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { OK, CREATED, SEE_OTHER } from 'http-status-codes';
 import { Router } from '@angular/router';
 import { CharacterService } from '../character.service';
-import { APIURL } from 'src/app/config.service';
+import { ConfigService } from 'src/app/config.service';
 
 @Component({
   selector: 'app-create',
@@ -30,17 +30,22 @@ export class CharacterCreateComponent implements OnInit {
     class: new FormControl({value: null, disabled: true}, Validators.required)
   });
 
-  constructor(private http: HttpClient, private router: Router, private characterService: CharacterService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private characterService: CharacterService,
+    private configService: ConfigService
+  ) { }
 
   ngOnInit() {
     this.realmsLoading = true;
-    this.http.get<string[]>(APIURL + '/realm', {withCredentials: true}).subscribe(realms => {
+    this.http.get<string[]>(this.configService.APIURL + '/realm', {withCredentials: true}).subscribe(realms => {
       this.realms = realms;
       this.character.controls.realm.enable();
       this.realmsLoading = false;
     });
     this.factionsLoading = true;
-    this.http.get<string[]>(APIURL + '/faction', {withCredentials: true}).subscribe(factions => {
+    this.http.get<string[]>(this.configService.APIURL + '/faction', {withCredentials: true}).subscribe(factions => {
       this.factions = factions;
       this.character.controls.faction.enable();
       this.factionsLoading = false;
@@ -64,7 +69,7 @@ export class CharacterCreateComponent implements OnInit {
     form.controls.race.disable();
     if (value != null) {
       this.racesLoading = true;
-      this.http.get<string[]>(APIURL + '/faction/' + value.toLocaleLowerCase() + '/race', {withCredentials: true}).subscribe(races => {
+      this.http.get<string[]>(this.configService.APIURL + '/faction/' + value.toLocaleLowerCase() + '/race', {withCredentials: true}).subscribe(races => {
         this.races = races;
         form.controls.race.enable();
         this.racesLoading = false;
@@ -106,7 +111,7 @@ export class CharacterCreateComponent implements OnInit {
     form.controls.class.disable();
     if (value != null) {
       this.classesLoading = true;
-      this.http.get<string[]>(APIURL + '/race/' + value.toLocaleLowerCase() + '/class', {withCredentials: true}).subscribe(classes => {
+      this.http.get<string[]>(this.configService.APIURL + '/race/' + value.toLocaleLowerCase() + '/class', {withCredentials: true}).subscribe(classes => {
         this.classes = classes;
         form.controls.class.enable();
         this.classesLoading = false;
@@ -147,7 +152,7 @@ export class CharacterCreateComponent implements OnInit {
 
   onSubmit() {
     // TODO: Use EventEmitter with form value
-    this.http.post(APIURL + '/user/character', this.character.value, {
+    this.http.post(this.configService.APIURL + '/user/character', this.character.value, {
       observe:'response',
       withCredentials: true
     }).subscribe(response => {

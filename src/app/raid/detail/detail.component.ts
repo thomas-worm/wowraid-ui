@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RaidEvent } from '../../model/raidevent.model';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, ChildActivationEnd } from '@angular/router';
-import { APIURL } from 'src/app/config.service';
+import { ConfigService } from 'src/app/config.service';
 
 @Component({
   selector: 'app-detail',
@@ -16,13 +16,14 @@ export class RaidDetailComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private configService: ConfigService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(p => {
       this.loading = true;
-      this.http.get<RaidEvent>(APIURL + '/event/' + p['key'], {withCredentials: true}).subscribe(result => {
+      this.http.get<RaidEvent>(this.configService.APIURL + '/event/' + p['key'], {withCredentials: true}).subscribe(result => {
         this.raid = result;
         this.loading = false;
       });

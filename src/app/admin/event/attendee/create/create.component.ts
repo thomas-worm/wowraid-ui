@@ -6,7 +6,7 @@ import { Character } from 'src/app/model/character.model';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { EventAttendee } from 'src/app/model/eventattendee.model';
 import { CREATED } from 'http-status-codes';
-import { APIURL } from 'src/app/config.service';
+import { ConfigService } from 'src/app/config.service';
 
 @Component({
   selector: 'app-create',
@@ -30,12 +30,13 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private configService: ConfigService
   ) { }
 
   ngOnInit() {
-    this.http.get<RaidEvent[]>(APIURL + '/event', {withCredentials: true}).subscribe(events => this.events = events.sort(this.sortEvents));
-    this.http.get<any[]>(APIURL + '/character', {withCredentials: true}).subscribe(rawCharacters => {
+    this.http.get<RaidEvent[]>(this.configService.APIURL + '/event', {withCredentials: true}).subscribe(events => this.events = events.sort(this.sortEvents));
+    this.http.get<any[]>(this.configService.APIURL + '/character', {withCredentials: true}).subscribe(rawCharacters => {
       this.characters =
         rawCharacters.map(rawCharacter => new Character(
           rawCharacter.name,
@@ -92,7 +93,7 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
     console.log(attendee);
     let recursive: boolean = (form.recursive != null && form.recursive);
     console.log(recursive);
-    this.http.post(APIURL + '/event/' + this.attendeeForm.controls.event.value + '/attendee' + (recursive ? '?recursive=true' : ''), attendee, {
+    this.http.post(this.configService.APIURL + '/event/' + this.attendeeForm.controls.event.value + '/attendee' + (recursive ? '?recursive=true' : ''), attendee, {
       observe:'response',
       withCredentials: true
     }).subscribe(response => {
