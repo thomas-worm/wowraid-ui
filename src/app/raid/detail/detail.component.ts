@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RaidEvent } from '../../model/raidevent.model';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, ChildActivationEnd } from '@angular/router';
+import { APIURL } from 'src/app/config';
 
 @Component({
   selector: 'app-detail',
@@ -21,7 +22,7 @@ export class RaidDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(p => {
       this.loading = true;
-      this.http.get<RaidEvent>('https://wowraid-api.herokuapp.com/event/' + p['key'], {withCredentials: true}).subscribe(result => {
+      this.http.get<RaidEvent>(APIURL + '/event/' + p['key'], {withCredentials: true}).subscribe(result => {
         this.raid = result;
         this.loading = false;
       });

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { APIURL } from './config';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class AuthGuardService implements CanActivate {
         } else {
           subscriber.next(false);
           subscriber.complete();
-          window.location.href = 'https://wowraid-api.herokuapp.com/user/login?redirect_uri=' +
+          window.location.href = APIURL + '/user/login?redirect_uri=' +
             encodeURIComponent(this.buildTargetUrlString(route));
         }
       });

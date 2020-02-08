@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { EpGpTransaction } from 'src/app/model/epgptransaction.model';
+import { APIURL } from 'src/app/config';
 
 @Component({
   selector: 'app-account',
@@ -21,7 +22,7 @@ export class EpgpAccountComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(p => {
       this.loading = true;
-      this.http.get<EpGpTransaction[]>('https://wowraid-api.herokuapp.com/account/' + p['key'] + '/transaction', {withCredentials: true}).subscribe(result => {
+      this.http.get<EpGpTransaction[]>(APIURL + '/account/' + p['key'] + '/transaction', {withCredentials: true}).subscribe(result => {
         this.transactions = result;
         this.loading = false;
       });

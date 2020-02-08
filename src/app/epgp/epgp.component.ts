@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EpGp } from '../model/epgp.model';
 import { HttpClient } from '@angular/common/http';
+import { APIURL } from '../config';
 
 @Component({
   selector: 'app-epgp',
@@ -16,7 +17,7 @@ export class EpgpComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.http.get<EpGp[]>('https://wowraid-api.herokuapp.com/kpi/epgp', {withCredentials: true}).subscribe(result => {
+    this.http.get<EpGp[]>(APIURL + '/kpi/epgp', {withCredentials: true}).subscribe(result => {
       this.epgp = result;
       this.loading = false;
     });

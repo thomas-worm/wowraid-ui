@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Character } from '../../model/character.model';
+import { APIURL } from 'src/app/config';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CharacterService {
   }
 
   getUserCharacters(): Observable<Character[]> {
-    this.http.get<any[]>('https://wowraid-api.herokuapp.com/user/character', {withCredentials: true}).subscribe(rawCharacters => {
+    this.http.get<any[]>(APIURL + '/user/character', {withCredentials: true}).subscribe(rawCharacters => {
       let characters: Character[] =
         rawCharacters.map(rawCharacter => new Character(
           rawCharacter.name,
