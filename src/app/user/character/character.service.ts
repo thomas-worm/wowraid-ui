@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Character } from '../../model/character.model';
-import { APIURL } from 'src/app/config';
+import { APIURL } from 'src/app/config.service';
 
 @Injectable({
   providedIn: 'root'

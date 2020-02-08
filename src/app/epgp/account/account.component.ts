@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { EpGpTransaction } from 'src/app/model/epgptransaction.model';
-import { APIURL } from 'src/app/config';
+import { APIURL } from 'src/app/config.service';
 
 @Component({
   selector: 'app-account',

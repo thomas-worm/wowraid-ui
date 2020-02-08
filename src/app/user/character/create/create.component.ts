@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { OK, CREATED, SEE_OTHER } from 'http-status-codes';
 import { Router } from '@angular/router';
 import { CharacterService } from '../character.service';
-import { APIURL } from 'src/app/config';
+import { APIURL } from 'src/app/config.service';
 
 @Component({
   selector: 'app-create',

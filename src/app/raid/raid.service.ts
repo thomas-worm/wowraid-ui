@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RaidEvent } from '../model/raidevent.model';
-import { APIURL } from '../config';
+import { APIURL } from '../config.service';
 
 @Injectable({
   providedIn: 'root'

@@ -6,7 +6,7 @@ import { Character } from 'src/app/model/character.model';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 import { EventAttendee } from 'src/app/model/eventattendee.model';
 import { CREATED } from 'http-status-codes';
-import { APIURL } from 'src/app/config';
+import { APIURL } from 'src/app/config.service';
 
 @Component({
   selector: 'app-create',
