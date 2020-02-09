@@ -18,6 +18,9 @@ export class AppComponent {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    $.fn.tooltip.Constructor.DEFAULTS.whiteList['dl'] = [];
+    $.fn.tooltip.Constructor.DEFAULTS.whiteList['dt'] = [];
+    $.fn.tooltip.Constructor.DEFAULTS.whiteList['dd'] = [];
     this.authService.isAuthenticated().subscribe(
       result => {
         this.authenticated = result;
@@ -29,10 +32,6 @@ export class AppComponent {
         this.groups = user.groups;
       }
     )
-    /** $('[data-toggle="popover"]').popover({
-      html : true,
-      selector: '.html-popover'
-    });**/
   }
 
 }
