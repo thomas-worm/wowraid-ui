@@ -36,7 +36,7 @@ export class EpGpAccountTransactionComponent implements OnInit, AfterViewInit {
     if (transaction.events != null && transaction.events.length > 0) {
       popoverContent += '<dt class="col-3 text-nowrap">Ereignisse:</dt><dd class="col-9"><ul class="row">';
       transaction.events.forEach(event => {
-        popoverContent += '<li>' + _.escape(event.name) + '</li>';
+        popoverContent += '<li class="col-12">' + _.escape(event.name) + '</li>';
       });
       popoverContent += '</ul></dd>';
     }
