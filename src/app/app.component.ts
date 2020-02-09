@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,6 +29,9 @@ export class AppComponent {
         this.groups = user.groups;
       }
     )
+    //$('[data-toggle="popover"]').popover({
+    //  html : true
+    //});
   }
 
 }
