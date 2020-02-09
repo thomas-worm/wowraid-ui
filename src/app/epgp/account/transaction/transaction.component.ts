@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { EpGpTransaction } from 'src/app/model/epgptransaction.model';
 import { formatDate } from '@angular/common';
 import _ from 'lodash';
@@ -8,13 +8,18 @@ import _ from 'lodash';
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.scss']
 })
-export class EpGpAccountTransactionComponent implements OnInit {
+export class EpGpAccountTransactionComponent implements OnInit, AfterViewInit {
 
+  @ViewChild('popover') popover: ElementRef;
   @Input() transaction: EpGpTransaction;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.popover.nativeElement.popover();
   }
 
   popoverContent(transaction: EpGpTransaction): string {
