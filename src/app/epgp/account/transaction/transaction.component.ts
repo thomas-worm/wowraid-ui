@@ -21,7 +21,7 @@ export class EpGpAccountTransactionComponent implements OnInit {
     var popoverContent: string = '';
     popoverContent += '<dl class="row">';
     popoverContent += '<dt class="col">Titel:</dt><dd class="row">' + _.escape(transaction.title) + '</dd>';
-    popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="row">' + _.escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'de_DE')) + '</dd>';
+    popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="row">' + _.escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'de-DE')) + '</dd>';
     popoverContent += '<dt class="col">Wert:</dt><dd class="row">' + _.escape(transaction.value) + ' ' + _.escape(transaction.currency) + '</dd>';
     if (transaction.description != null && transaction.description.trim() != '') {
       popoverContent += '<dt class="col">Beschreibung:</dt><dd class="row">' + _.escape(transaction.description) + '</dd>';
