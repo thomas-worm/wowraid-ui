@@ -28,6 +28,7 @@
           </td>
           <td>
             {{ transaction.title }}
+            <epgp-account-transaction [transaction]="transaction"></epgp-account-transaction>
           </td>
           <td>
             {{ transaction.value }} {{ transaction.currency }}
