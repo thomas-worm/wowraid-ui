@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EpGpTransaction } from 'src/app/model/epgptransaction.model';
-import { escape } from 'node_modules/lodash/escape'
 import { formatDate } from '@angular/common';
+import _ from 'lodash';
 
 @Component({
   selector: 'epgp-account-transaction',
@@ -20,7 +20,7 @@ export class EpGpAccountTransactionComponent implements OnInit {
   popoverContent(transaction: EpGpTransaction): string {
     var popoverContent: string = 'Test';
     popoverContent += '<dl class="row">';
-    popoverContent += '<dt class="col">Titel:</dt><dd class="row">' + transaction.title + '</dd>';
+    popoverContent += '<dt class="col">Titel:</dt><dd class="row">' + _.escape(transaction.title) + '</dd>';
     /**popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="row">' + escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'de')) + '</dd>';
     popoverContent += '<dt class="col">Wert:</dt><dd class="row">' + escape(transaction.value) + ' ' + escape(transaction.currency) + '</dd>';
     if (transaction.description != null && transaction.description.trim() != '') {
