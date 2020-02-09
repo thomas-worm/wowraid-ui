@@ -30,7 +30,8 @@ export class AppComponent {
       }
     )
     $('[data-toggle="popover"]').popover({
-      html : true
+      html : true,
+      selector: '.html-popover'
     });
   }
 
