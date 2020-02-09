@@ -10,15 +10,15 @@ import { formatDate } from '@angular/common';
 })
 export class EpGpAccountTransactionComponent implements OnInit {
 
-  _transaction: EpGpTransaction;
-  popoverContent: string;
+  @Input() transaction: EpGpTransaction;
+  popoverContent: string = '';
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  @Input()
+  /** @Input()
   set transaction(transaction: EpGpTransaction) {
     this._transaction = transaction;
     var popoverContent: string = '';
@@ -40,6 +40,6 @@ export class EpGpAccountTransactionComponent implements OnInit {
     this.popoverContent = popoverContent;
   }
 
-  get transaction(): EpGpTransaction { return this._transaction; }
+  get transaction(): EpGpTransaction { return this._transaction; } **/
 
 }
