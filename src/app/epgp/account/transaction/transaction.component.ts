@@ -3,6 +3,8 @@ import { EpGpTransaction } from 'src/app/model/epgptransaction.model';
 import { formatDate } from '@angular/common';
 import _ from 'lodash';
 
+declare var $: any;
+
 @Component({
   selector: 'epgp-account-transaction',
   templateUrl: './transaction.component.html',
@@ -19,7 +21,7 @@ export class EpGpAccountTransactionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.popover.nativeElement.popover();
+    $(this.popover.nativeElement).popover();
   }
 
   popoverContent(transaction: EpGpTransaction): string {
