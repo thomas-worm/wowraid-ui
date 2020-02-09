@@ -19,21 +19,21 @@ export class EpGpAccountTransactionComponent implements OnInit {
 
   popoverContent(transaction: EpGpTransaction): string {
     var popoverContent: string = '';
-    popoverContent += '<dl class="row">';
-    popoverContent += '<dt class="col">Titel:</dt><dd class="col">' + _.escape(transaction.title) + '</dd>';
-    /**popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="col">' + _.escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'en-US')) + '</dd>';
-    popoverContent += '<dt class="col">Wert:</dt><dd class="col">' + _.escape(transaction.value) + ' ' + _.escape(transaction.currency) + '</dd>';
+    popoverContent += '<div class="row dl">';
+    popoverContent += '<div class="col dt">Titel:</div><div class="col dd">' + _.escape(transaction.title) + '</div>';
+    popoverContent += '<div class="col dt">Zeitpunkt:</div><div class="col dd">' + _.escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'en-US')) + '</div>';
+    popoverContent += '<div class="col dt">Wert:</div><div class="col dd">' + _.escape(transaction.value) + ' ' + _.escape(transaction.currency) + '</div>';
     if (transaction.description != null && transaction.description.trim() != '') {
-      popoverContent += '<dt class="col">Beschreibung:</dt><dd class="col">' + _.escape(transaction.description) + '</dd>';
+      popoverContent += '<div class="col dt">Beschreibung:</div><div class="col dd">' + _.escape(transaction.description) + '</div>';
     }
     if (transaction.events != null && transaction.events.length > 0) {
-      popoverContent += '<dt class="col">Ereignisse:</dt><dd class="col"><ul class="row">';
+      popoverContent += '<div class="col dt">Ereignisse:</div><div class="col dd"><ul class="row">';
       transaction.events.forEach(event => {
         popoverContent += '<li>' + _.escape(event.name) + '</li>';
       });
-      popoverContent += '</ul></dd>';
-    } */
-    popoverContent += '</dl>';
+      popoverContent += '</ul></div>';
+    }
+    popoverContent += '</div>';
     return popoverContent;
   }
 
