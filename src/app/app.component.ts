@@ -29,10 +29,10 @@ export class AppComponent {
         this.groups = user.groups;
       }
     )
-    $('[data-toggle="popover"]').popover({
+    /** $('[data-toggle="popover"]').popover({
       html : true,
       selector: '.html-popover'
-    });
+    });**/
   }
 
 }
