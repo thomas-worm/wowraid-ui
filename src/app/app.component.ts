@@ -18,9 +18,9 @@ export class AppComponent {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    $.fn.tooltip.Constructor.DEFAULTS.whiteList['dl'] = [];
-    $.fn.tooltip.Constructor.DEFAULTS.whiteList['dt'] = [];
-    $.fn.tooltip.Constructor.DEFAULTS.whiteList['dd'] = [];
+    $.fn.popover.Constructor.Default.whiteList['dl'] = [];
+    $.fn.popover.Constructor.Default.whiteList['dt'] = [];
+    $.fn.popover.Constructor.Default.whiteList['dd'] = [];
     this.authService.isAuthenticated().subscribe(
       result => {
         this.authenticated = result;
