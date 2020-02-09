@@ -27,7 +27,7 @@
             {{ transaction.date_time | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}
           </td>
           <td>
-            <epgp-account-transaction [transaction]="transaction"></epgp-account-transaction>
+            {{ transaction.title }}
           </td>
           <td>
             {{ transaction.value }} {{ transaction.currency }}
