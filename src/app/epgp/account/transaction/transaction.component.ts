@@ -10,7 +10,7 @@ import _ from 'lodash';
 })
 export class EpGpAccountTransactionComponent implements OnInit, AfterViewInit {
 
-  @ViewChild('popover') popover: ElementRef;
+  @ViewChild('popover', {static: false}) popover: ElementRef;
   @Input() transaction: EpGpTransaction;
 
   constructor() { }
