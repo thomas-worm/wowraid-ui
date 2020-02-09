@@ -13,6 +13,7 @@ import { EpGpAccount } from 'src/app/model/epgpaccount.model';
 export class EpgpAccountComponent implements OnInit {
 
   account: EpGpAccount;
+  transactions: EpGpTransaction[];
   loading: boolean = false;
 
   constructor(
@@ -26,6 +27,7 @@ export class EpgpAccountComponent implements OnInit {
       this.loading = true;
       this.http.get<EpGpAccount>(this.configService.APIURL + '/account/' + p['key'], {withCredentials: true}).subscribe(result => {
         this.account = result;
+        this.transactions = result.transactions;
         this.loading = false;
       });
     });
