@@ -49,3 +49,7 @@ $table-head-color: #b09779;
     @extend :invalid;
   }
 }
+
+.popover {
+  min-width: 80%;
+}
