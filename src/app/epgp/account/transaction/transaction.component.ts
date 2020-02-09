@@ -18,7 +18,7 @@ export class EpGpAccountTransactionComponent implements OnInit {
   ngOnInit() {
   }
 
-  @Input("transaction")
+  @Input()
   set transaction(transaction: EpGpTransaction) {
     this._transaction = transaction;
     var popoverContent: string = '';
