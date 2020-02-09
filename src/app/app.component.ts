@@ -29,9 +29,9 @@ export class AppComponent {
         this.groups = user.groups;
       }
     )
-    //$('[data-toggle="popover"]').popover({
-    //  html : true
-    //});
+    $('[data-toggle="popover"]').popover({
+      html : true
+    });
   }
 
 }
