@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { EpGpTransaction } from 'src/app/model/epgptransaction.model';
 import { ConfigService } from 'src/app/config.service';
+import { EpGpAccount } from 'src/app/model/epgpaccount.model';
 
 @Component({
   selector: 'app-account',
@@ -11,7 +12,7 @@ import { ConfigService } from 'src/app/config.service';
 })
 export class EpgpAccountComponent implements OnInit {
 
-  transactions: EpGpTransaction[] = [];
+  account: EpGpAccount;
   loading: boolean = false;
 
   constructor(
@@ -23,8 +24,8 @@ export class EpgpAccountComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(p => {
       this.loading = true;
-      this.http.get<EpGpTransaction[]>(this.configService.APIURL + '/account/' + p['key'] + '/transaction', {withCredentials: true}).subscribe(result => {
-        this.transactions = result;
+      this.http.get<EpGpAccount>(this.configService.APIURL + '/account/' + p['key'], {withCredentials: true}).subscribe(result => {
+        this.account = result;
         this.loading = false;
       });
     });

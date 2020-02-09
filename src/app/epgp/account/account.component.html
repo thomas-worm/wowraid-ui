@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col">
     <h1>
-      Kontodetails
+      Kontodetails <span *ngIf="account != null">{{ account.name }}</span>
     </h1>
   </div>
 </div>
@@ -21,13 +21,13 @@
           </th>
         </tr>
       </thead>
-      <tbody *ngIf="transactions.length > 0">
+      <tbody *ngIf="account != null && account.transactions.length > 0">
         <tr *ngFor="let transaction of transactions">
           <td>
             {{ transaction.date_time | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}
           </td>
           <td>
-            {{ transaction.title }}
+            <a>{{ transaction.title }}</a>
           </td>
           <td>
             {{ transaction.value }} {{ transaction.currency }}

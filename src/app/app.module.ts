@@ -42,6 +42,7 @@ import { EventAttendeeAdminComponent } from './admin/event/attendee/attendee.com
 import { EventAttendeeAdminCreateComponent } from './admin/event/attendee/create/create.component';
 import { EpgpComponent } from './epgp/epgp.component';
 import { EpgpAccountComponent } from './epgp/account/account.component';
+import { EpGpAccountTransactionComponent } from './epgp/account/transaction/transaction.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { EpgpAccountComponent } from './epgp/account/account.component';
     EventAttendeeAdminComponent,
     EventAttendeeAdminCreateComponent,
     EpgpComponent,
-    EpgpAccountComponent
+    EpgpAccountComponent,
+    EpGpAccountTransactionComponent
   ],
   imports: [
     BrowserModule,

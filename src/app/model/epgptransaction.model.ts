@@ -3,6 +3,11 @@ export class EpGpTransaction {
     public date_time: Date,
     public title: String,
     public value: number,
-    public currency: String
+    public currency: String,
+    public description: string,
+    public events: {
+      key: string,
+      name: string
+    }[]
   ) {}
 }
