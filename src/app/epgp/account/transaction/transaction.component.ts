@@ -21,7 +21,7 @@ export class EpGpAccountTransactionComponent implements OnInit {
     var popoverContent: string = '';
     popoverContent += '<dl class="row">';
     popoverContent += '<dt class="col">Titel:</dt><dd class="col">' + _.escape(transaction.title) + '</dd>';
-    popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="col">' + _.escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'en-US')) + '</dd>';
+    /**popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="col">' + _.escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'en-US')) + '</dd>';
     popoverContent += '<dt class="col">Wert:</dt><dd class="col">' + _.escape(transaction.value) + ' ' + _.escape(transaction.currency) + '</dd>';
     if (transaction.description != null && transaction.description.trim() != '') {
       popoverContent += '<dt class="col">Beschreibung:</dt><dd class="col">' + _.escape(transaction.description) + '</dd>';
@@ -32,7 +32,7 @@ export class EpGpAccountTransactionComponent implements OnInit {
         popoverContent += '<li>' + _.escape(event.name) + '</li>';
       });
       popoverContent += '</ul></dd>';
-    }
+    } */
     popoverContent += '</dl>';
     return popoverContent;
   }
