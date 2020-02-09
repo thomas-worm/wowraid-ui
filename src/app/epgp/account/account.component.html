@@ -22,7 +22,7 @@
         </tr>
       </thead>
       <tbody *ngIf="account != null && account.transactions.length > 0">
-        <tr *ngFor="let transaction of transactions">
+        <tr *ngFor="let transaction of account.transactions">
           <td>
             {{ transaction.date_time | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}
           </td>
