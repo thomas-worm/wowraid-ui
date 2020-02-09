@@ -23,15 +23,15 @@ export class EpGpAccountTransactionComponent implements OnInit {
     this._transaction = transaction;
     var popoverContent: string = '';
     popoverContent += '<dl class="row">';
-    popoverContent += '<dt class="col">Titel:</dt><dd class="row">' + escape(this.transaction.title) + '</dd>';
-    popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="row">' + escape(formatDate(this.transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'de')) + '</dd>';
-    popoverContent += '<dt class="col">Wert:</dt><dd class="row">' + escape(this.transaction.value) + ' ' + escape(this.transaction.currency) + '</dd>';
-    if (this.transaction.description != null && this.transaction.description.trim() != '') {
-      popoverContent += '<dt class="col">Beschreibung:</dt><dd class="row">' + escape(this.transaction.description) + '</dd>';
+    popoverContent += '<dt class="col">Titel:</dt><dd class="row">' + escape(transaction.title) + '</dd>';
+    popoverContent += '<dt class="col">Zeitpunkt:</dt><dd class="row">' + escape(formatDate(transaction.date_time, 'dd.MM.yyyy, HH:mm \'Uhr\'', 'de')) + '</dd>';
+    popoverContent += '<dt class="col">Wert:</dt><dd class="row">' + escape(transaction.value) + ' ' + escape(transaction.currency) + '</dd>';
+    if (transaction.description != null && transaction.description.trim() != '') {
+      popoverContent += '<dt class="col">Beschreibung:</dt><dd class="row">' + escape(transaction.description) + '</dd>';
     }
-    if (this.transaction.events != null && this.transaction.events.length > 0) {
+    if (transaction.events != null && transaction.events.length > 0) {
       popoverContent += '<dt class="col">Ereignisse:</dt><dd class="row"><';
-      this.transaction.events.forEach(event => {
+      transaction.events.forEach(event => {
         popoverContent += '<li>' + escape(event.name) + '</li>';
       });
       popoverContent += '</dd>';
