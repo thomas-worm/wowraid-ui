@@ -38,12 +38,12 @@
           </td>
           <td>
             <a [routerLink]="'/epgp/account/' + entry.effort_points_account">
-              {{ entry.effort_points | number: '1.2-2' }}
+              {{ entry.effort_points | number: '1.2-2':'de' }}
             </a>
           </td>
           <td>
             <a [routerLink]="'/epgp/account/' + entry.gear_points_account">
-              {{ entry.gear_points | number: '1.2-2' }}
+              {{ entry.gear_points | number: '1.2-2':'de' }}
             </a>
           </td>
           <td>

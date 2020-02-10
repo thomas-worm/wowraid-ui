@@ -32,6 +32,8 @@ import { EventAttendeeAdminComponent } from './admin/event/attendee/attendee.com
 import { EventAttendeeAdminCreateComponent } from './admin/event/attendee/create/create.component';
 import { EpgpComponent } from './epgp/epgp.component';
 import { EpgpAccountComponent } from './epgp/account/account.component';
+import { EventLootAdminComponent } from './admin/event/loot/loot.component';
+import { EventLootCreateAdminComponent } from './admin/event/loot/create/create.component';
 
 
 const routes: Routes = [
@@ -66,6 +68,8 @@ const routes: Routes = [
   { path: 'admin/raid/create', component: CreateRaidEventComponent, canActivate: [ AuthGuardService ] },
   { path: 'admin/attendees', component: EventAttendeeAdminComponent, canActivate: [ AuthGuardService ] },
   { path: 'admin/attendee/create', component: EventAttendeeAdminCreateComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin/loot', component: EventLootAdminComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin/loot/create', component: EventLootCreateAdminComponent, canActivate: [ AuthGuardService ] },
   { path: '**', redirectTo: '/' }
 ];
 
