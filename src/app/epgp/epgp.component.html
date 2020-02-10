@@ -25,16 +25,25 @@
       <tbody *ngIf="epgp.length > 0">
         <tr *ngFor="let entry of epgp">
           <td>
-            {{ entry.battle_tag }}
+            <div class="row">
+              <div class="col">
+                {{ entry.battle_tag }}
+              </div>
+            </div>
+            <ul class="row" *ngIf="entry.characters != null && entry.characters.length > 0">
+              <li class="col-12" *ngFor="let character of sortCharacters(entry.characters)">
+                <small>{{ character.name }} ({{ character.realm }})</small>
+              </li>
+            </ul>
           </td>
           <td>
             <a [routerLink]="'/epgp/account/' + entry.effort_points_account">
-              {{ entry.effort_points }}
+              {{ entry.effort_points | number: '1.2-2' }}
             </a>
           </td>
           <td>
             <a [routerLink]="'/epgp/account/' + entry.gear_points_account">
-              {{ entry.gear_points }}
+              {{ entry.gear_points | number: '1.2-2' }}
             </a>
           </td>
           <td>

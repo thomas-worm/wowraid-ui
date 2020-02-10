@@ -26,4 +26,8 @@ export class EpgpComponent implements OnInit {
     });
   }
 
+  sortCharacters(characters: any[]): any {
+    return characters.sort((char1: any, char2: any) => (<string> char1.name).localeCompare(<string> char2.name));
+  }
+
 }

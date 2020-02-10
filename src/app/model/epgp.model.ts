@@ -5,6 +5,10 @@ export class EpGp {
     public effort_points_account: string,
     public gear_points: number,
     public gear_points_account: string,
-    public priority: number
+    public priority: number,
+    public characters: {
+      realm: string,
+      name: string
+    }[]
   ) {}
 }
