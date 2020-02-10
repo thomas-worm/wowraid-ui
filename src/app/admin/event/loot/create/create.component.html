@@ -18,7 +18,7 @@
               placeholder="Kreatur"
               required="required">
               <option value="">(keine Kreatur zuordnen)</option>
-              <option *ngFor="let creature of creatures" [value]="creature.blizzard_identifier">{{ creature }} (ID: {{ creature.blizzard_identifier }})</option>
+              <option *ngFor="let creature of creatures" [value]="creature.blizzard_identifier">{{ creature.name }} (ID: {{ creature.blizzard_identifier }})</option>
             </select>
           </div>
         </div>
