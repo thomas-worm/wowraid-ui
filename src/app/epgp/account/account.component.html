@@ -24,13 +24,13 @@
       <tbody *ngIf="transactions != null && transactions.length > 0">
         <tr *ngFor="let transaction of transactions">
           <td>
-            {{ transaction.date_time | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}
+            {{ transaction.date_time | date: 'dd.MM.yyyy, HH:mm \'Uhr\'' }}
           </td>
           <td>
             <epgp-account-transaction [transaction]="transaction"></epgp-account-transaction>
           </td>
           <td>
-            {{ transaction.value }} {{ transaction.currency }}
+            {{ transaction.value | number: '1.2-2':'de' }} {{ transaction.currency }}
           </td>
         </tr>
       </tbody>
