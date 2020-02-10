@@ -30,7 +30,7 @@
                 {{ entry.battle_tag }}
               </div>
             </div>
-            <ul class="row" *ngIf="entry.characters != null && entry.characters.length > 0">
+            <ul class="row mb-0" *ngIf="entry.characters != null && entry.characters.length > 0">
               <li class="col-12" *ngFor="let character of sortCharacters(entry.characters)">
                 <small>{{ character.name }} ({{ character.realm }})</small>
               </li>
