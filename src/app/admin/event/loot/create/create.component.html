@@ -1,1 +1,82 @@
-<p>create works!</p>
+<div class="row">
+  <div class="col">
+    <h1>Loot anlegen</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <form [formGroup]="lootForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="event">Kreatur:</label>
+            <select
+              id="creature"
+              formControlName="creature"
+              class="custom-select form-control"
+              placeholder="Kreatur"
+              required="required">
+              <option value="">(keine Kreatur zuordnen)</option>
+              <option *ngFor="let creature of creatures" [value]="creature.blizzard_identifier">{{ creature }} (ID: {{ creature.blizzard_identifier }})</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="event">Gegenstand:</label>
+            <select
+              id="creature"
+              formControlName="creature"
+              class="custom-select form-control"
+              placeholder="Kreatur"
+              required="required">
+              <option *ngFor="let item of items" [value]="item.blizzard_identifier">{{ item.name }} (ID: {{ item.blizzard_identifier }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="character">Charakter:</label>
+            <select
+              id="character"
+              formControlName="character"
+              class="custom-select form-control"
+              placeholder="Charakter"
+              required="required">
+              <option *ngFor="let character of characters" [value]="[ character.realm, character.name ]">{{ character.name }} ({{ character.realm }})</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div
+            class="form-group">
+            <label for="event">Event:</label>
+            <select
+              id="event"
+              formControlName="event"
+              class="custom-select form-control"
+              placeholder="Event"
+              required="required">
+              <option value="">(kein Event zuordnen)</option>
+              <option *ngFor="let event of events" [value]="event.key">{{ event.key }} ({{ event.name }}, {{ event.start_datetime | date: 'dd.MM.yyyy, HH:mm' }}-{{ event.finish_datetime | date: 'dd.MM.yyyy, HH:mm' }})</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary">Anlegen</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
