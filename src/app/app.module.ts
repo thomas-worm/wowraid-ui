@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http'
+import { registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import localeDe from '@angular/common/locales/de';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -45,6 +47,8 @@ import { EpgpAccountComponent } from './epgp/account/account.component';
 import { EpGpAccountTransactionComponent } from './epgp/account/transaction/transaction.component';
 import { EventLootAdminComponent } from './admin/event/loot/loot.component';
 import { EventLootCreateAdminComponent } from './admin/event/loot/create/create.component';
+
+registerLocaleData(localeDe, 'de');
 
 @NgModule({
   declarations: [
