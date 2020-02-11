@@ -46,13 +46,13 @@
           Ende: {{ instance.finish_datetime | date:'dd.MM.yyyy, HH:mm \'Uhr\'' }}</p>
         </div>
       </div>
-      <div class="row" *ngFor="let drop of instance.drops">
+      <div class="row" *ngFor="let instanceDrop of instance.drops">
         <div class="col">
           <data-loot
-            [item-blizzard-identifier]="drop.item_blizzard_identifier"
-            [item-name]="drop.item_name"
-            [looter-name]="drop.looter_name"
-            [looter-class]="drop.looter_class"
+            [item-blizzard-identifier]="instanceDrop.item_blizzard_identifier"
+            [item-name]="instanceDrop.item_name"
+            [looter-name]="instanceDrop.looter_name"
+            [looter-class]="instanceDrop.looter_class"
           ></data-loot>
         </div>
       </div>
