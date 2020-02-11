@@ -74,14 +74,15 @@ export class EventLootCreateAdminComponent implements OnInit {
     console.log(this.lootForm.value);
     let form = this.lootForm.value;
     let characterinfo: string[] = (form.character == '' || form.character == ',') ? [null, null] : form.character.split(',');
-    console.log({
+    let createLootDto = {
       item_blizzard_identifier: <number> form.item,
       creature_blizzard_identifier: <number> (form.creature == '' ? null : form.creature),
       character_realm: <string> characterinfo[0],
       character_name: <string> characterinfo[1],
       event_key: <string> (form.event == '' ? null : form.event)
-    });
-    this.http.post(this.configService.APIURL + '/loot', {
+    };
+    console.log(createLootDto);
+    this.http.post(this.configService.APIURL + '/loot', createLootDto, {
       observe: 'response',
       withCredentials: true
     }).subscribe(response => {
