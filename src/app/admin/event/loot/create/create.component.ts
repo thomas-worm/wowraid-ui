@@ -6,6 +6,7 @@ import { Creature } from 'src/app/model/creature.model';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { ConfigService } from 'src/app/config.service';
 import { HttpClient } from '@angular/common/http';
+import { CREATED } from 'http-status-codes';
 
 @Component({
   selector: 'app-create',
@@ -80,6 +81,16 @@ export class EventLootCreateAdminComponent implements OnInit {
       character_name: <string> characterinfo[1],
       event_key: <string> (form.event == '' ? null : form.event)
     });
+    /**this.http.post(this.configService.APIURL + '/loot', {
+      observe: 'response',
+      withCredentials: true
+    }).subscribe(response => {
+      if (response.status == CREATED) {
+        alert('Success');
+      } else {
+        alert('Es ist ein Fehler aufgetreten. Wende dich an die Raidleitung.');
+      }
+    }); **/
   }
 
 }

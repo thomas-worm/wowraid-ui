@@ -94,7 +94,7 @@ export class EventAttendeeAdminCreateComponent implements OnInit {
     let recursive: boolean = (form.recursive != null && form.recursive);
     console.log(recursive);
     this.http.post(this.configService.APIURL + '/event/' + this.attendeeForm.controls.event.value + '/attendee' + (recursive ? '?recursive=true' : ''), attendee, {
-      observe:'response',
+      observe: 'response',
       withCredentials: true
     }).subscribe(response => {
       if (response.status == CREATED) {
