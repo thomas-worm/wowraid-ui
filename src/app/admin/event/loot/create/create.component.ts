@@ -81,7 +81,7 @@ export class EventLootCreateAdminComponent implements OnInit {
       character_name: <string> characterinfo[1],
       event_key: <string> (form.event == '' ? null : form.event)
     });
-    /**this.http.post(this.configService.APIURL + '/loot', {
+    this.http.post(this.configService.APIURL + '/loot', {
       observe: 'response',
       withCredentials: true
     }).subscribe(response => {
@@ -90,7 +90,7 @@ export class EventLootCreateAdminComponent implements OnInit {
       } else {
         alert('Es ist ein Fehler aufgetreten. Wende dich an die Raidleitung.');
       }
-    }); **/
+    });
   }
 
 }
