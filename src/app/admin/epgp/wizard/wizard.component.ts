@@ -166,32 +166,38 @@ export class EpGpWizardAdminComponent implements OnInit {
   }
 
   generateTransactions() {
+    let transactionsArray = this.transactionsForm.get('transactions') as FormArray;
     console.log('Werte Grundlagen aus...');
     let basics = this.basicsForm.value;
     console.log(basics);
     let raids = this.events.filter(e => basics.events.includes(e.key));
     let characters = this.characters.filter(c => basics.characters.filter(bc => bc[1] == c.name && bc[0] == c.realm).length > 0);
-    if (basics.early_bonus > 0) {
-      console.log('Generiere Buchungen für Pünktlichkeit...')
-      raids.forEach(r => {
-        r.attendees
-          .filter(a => a.start_datetime == r.start_datetime)
-          .filter(a => characters.filter(c => c.name == a.character_name && c.realm == a.character_realm).length > 0)
-          .forEach(a => {
-            (this.transactionsForm.get('transactions') as FormArray).push(
-              this.formBuilder.group({
-                account: this.epgp.find(ac => ac.characters.includes(this.characters.find(c => c.name == a.character_name && c.realm == a.character_realm))).effort_points_account,
-                title: 'Bonus: Pünktliche Anwesenheit zum Raid',
-                value: basics.early_bonus,
-                date_time: r.start_datetime,
-                events: [r.key],
-                characters: [a.character_realm+','+a.character_name],
-                items: []
-              })
-            );
-          })
+    characters.forEach(character => {
+      console.log('Generiere Buchungen für ' + character.name + ' (' + character.realm + ')...');
+      console.log(character);
+      let epgp = this.epgp.find(e => e.characters.filter(c => c.name == character.name && c.realm == character.realm));
+      console.log(epgp);
+      raids.forEach(raid => {
+        console.log('Raid ' + raid.key + '...');
+        console.log(raid);
+        let attendee = raid.attendees.find(a => a.character_name == character.name && a.character_realm == character.realm);
+        if (attendee) {
+          console.log('Teilnahme am Raid gefunden...');
+          if (basics.early_bonus > 0 && attendee.start_datetime == raid.start_datetime) {
+            console.log('Pünktliche Teilnahme wird vergütet...');
+            transactionsArray.push(this.formBuilder.group({
+              account: epgp.effort_points_account,
+              title: 'Bonus: Pünktliche Anwesenheit zum Raid',
+              value: basics.early_bonus,
+              date_time: raid.start_datetime,
+              events: [ raid.key ],
+              characters: [ [character.realm, character.name] ],
+              items: []
+            }));
+          }
+        }
       });
-    }
+    });
   }
 
 }
