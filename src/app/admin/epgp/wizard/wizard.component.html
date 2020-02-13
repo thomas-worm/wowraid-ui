@@ -3,7 +3,7 @@
     <h1>Kontoverwaltung: EPGP Buchungsassistent</h1>
   </div>
 </div>
-<div class="row" *ngIf="accountsLoading || charactersLoading || eventsLoading || itemsLoading">
+<div class="row" *ngIf="accountsLoading || charactersLoading || eventsLoading || itemsLoading; else prepared">
   <div class="col">
     <div class="row">
       <div class="col">
