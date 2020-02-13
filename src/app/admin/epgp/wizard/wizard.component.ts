@@ -91,7 +91,7 @@ export class EpGpWizardAdminComponent implements OnInit {
       events: [],
       characters: []
     });
-    this.basicsForm.controls.events.valueChanges.subscribe(value => updateBasicsCharacters(value));
+    this.basicsForm.controls.events.valueChanges.subscribe(value => this.updateBasicsCharacters(value));
   }
 
   private buildForm() {
