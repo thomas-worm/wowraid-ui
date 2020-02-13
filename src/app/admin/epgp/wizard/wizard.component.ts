@@ -190,9 +190,9 @@ export class EpGpWizardAdminComponent implements OnInit {
               title: 'Bonus: Pünktliche Anwesenheit zum Raid',
               value: basics.early_bonus,
               date_time: raid.start_datetime,
-              events: [ raid ],
-              characters: [ character ],
-              items: []
+              events: [ raid ] as RaidEvent[],
+              characters: [ character ] as Character[],
+              items: [] as Item[]
             });
             console.log(earlyTransaction);
             transactionsArray.push(earlyTransaction);
