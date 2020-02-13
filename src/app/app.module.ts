@@ -47,6 +47,8 @@ import { EpgpAccountComponent } from './epgp/account/account.component';
 import { EpGpAccountTransactionComponent } from './epgp/account/transaction/transaction.component';
 import { EventLootAdminComponent } from './admin/event/loot/loot.component';
 import { EventLootCreateAdminComponent } from './admin/event/loot/create/create.component';
+import { EpgpAdminComponent } from './admin/epgp/epgp.component';
+import { EpGpWizardAdminComponent } from './admin/epgp/wizard/wizard.component';
 
 registerLocaleData(localeDe, 'de');
 
@@ -91,7 +93,9 @@ registerLocaleData(localeDe, 'de');
     EpgpAccountComponent,
     EpGpAccountTransactionComponent,
     EventLootAdminComponent,
-    EventLootCreateAdminComponent
+    EventLootCreateAdminComponent,
+    EpgpAdminComponent,
+    EpGpWizardAdminComponent
   ],
   imports: [
     BrowserModule,

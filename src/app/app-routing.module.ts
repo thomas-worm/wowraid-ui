@@ -34,6 +34,8 @@ import { EpgpComponent } from './epgp/epgp.component';
 import { EpgpAccountComponent } from './epgp/account/account.component';
 import { EventLootAdminComponent } from './admin/event/loot/loot.component';
 import { EventLootCreateAdminComponent } from './admin/event/loot/create/create.component';
+import { EpgpAdminComponent } from './admin/epgp/epgp.component';
+import { EpGpWizardAdminComponent } from './admin/epgp/wizard/wizard.component';
 
 
 const routes: Routes = [
@@ -70,6 +72,8 @@ const routes: Routes = [
   { path: 'admin/attendee/create', component: EventAttendeeAdminCreateComponent, canActivate: [ AuthGuardService ] },
   { path: 'admin/loot', component: EventLootAdminComponent, canActivate: [ AuthGuardService ] },
   { path: 'admin/loot/create', component: EventLootCreateAdminComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin/epgp', component: EpgpAdminComponent, canActivate: [ AuthGuardService ] },
+  { path: 'admin/epgp/wizard', component: EpGpWizardAdminComponent, canActivate: [ AuthGuardService ] },
   { path: '**', redirectTo: '/' }
 ];
 
