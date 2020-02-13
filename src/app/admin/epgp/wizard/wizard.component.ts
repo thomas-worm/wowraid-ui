@@ -186,12 +186,12 @@ export class EpGpWizardAdminComponent implements OnInit {
           if (basics.early_bonus > 0 && attendee.start_datetime == raid.start_datetime) {
             console.log('Pünktliche Teilnahme wird vergütet...');
             transactionsArray.push(this.formBuilder.group({
-              account: epgp.effort_points_account,
+              account: { key: epgp.effort_points_account, description: null } ,
               title: 'Bonus: Pünktliche Anwesenheit zum Raid',
               value: basics.early_bonus,
               date_time: raid.start_datetime,
-              events: [ raid.key ],
-              characters: [ [character.realm, character.name] ],
+              events: [ raid ],
+              characters: [ character ],
               items: []
             }));
           }
@@ -206,7 +206,7 @@ export class EpGpWizardAdminComponent implements OnInit {
   }, b: {
     key: string,
     description: string
-  }) {
+  }): boolean {
     return a.key == b.key;
   }
 
