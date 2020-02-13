@@ -170,14 +170,7 @@ export class EpGpWizardAdminComponent implements OnInit {
     let basics = this.basicsForm.value;
     console.log(basics);
     let raids = this.events.filter(e => basics.events.includes(e.key));
-    let characterInfos = basics.characters.map(x => {
-      let x_parts = (x == '' || x == ',') ? [null, null] : x.split(',')
-      return {
-        name: x_parts[0],
-        realm: x_parts[1]
-      };
-    });
-    let characters = this.characters.filter(c => characterInfos.filter(ci => ci.name == c.name && ci.realm == c.realm).length > 0);
+    let characters = this.characters.filter(c => basics.characters.filter(bc => bc[1] == c.name && bc[0] == c.realm).length > 0);
     if (basics.early_bonus > 0) {
       console.log('Generiere Buchungen für Pünktlichkeit...')
       raids.forEach(r => {
