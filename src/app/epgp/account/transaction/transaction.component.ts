@@ -40,6 +40,13 @@ export class EpGpAccountTransactionComponent implements OnInit, AfterViewInit {
       });
       popoverContent += '</ul></dd>';
     }
+    if (transaction.characters != null && transaction.characters.length > 0) {
+      popoverContent += '<dt class="col-3 text-nowrap">Ereignisse:</dt><dd class="col-9"><ul class="row">';
+      transaction.characters.forEach(character => {
+        popoverContent += '<li class="col-12">' + _.escape(character.name) + ' (' + _.escape(character.realm) + ')</li>';
+      });
+      popoverContent += '</ul></dd>';
+    }
     popoverContent += '</dl>';
     return popoverContent;
   }

@@ -8,6 +8,10 @@ export class EpGpTransaction {
     public events: {
       key: string,
       name: string
+    }[],
+    public characters: {
+      realm: string,
+      name: string
     }[]
   ) {}
 }
