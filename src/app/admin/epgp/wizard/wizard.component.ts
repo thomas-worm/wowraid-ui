@@ -3,7 +3,7 @@ import { RaidEvent } from 'src/app/model/raidevent.model';
 import { Character } from 'src/app/model/character.model';
 import { Item } from 'src/app/model/item.model';
 import { EpGp } from 'src/app/model/epgp.model';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from 'src/app/config.service';
 
@@ -23,6 +23,12 @@ export class EpGpWizardAdminComponent implements OnInit {
   characters: Character[] = [];
   items: Item[] = [];
   epgp: EpGp[] = [];
+  accounts: {
+    key: string,
+    description: string
+  }[] = [];
+
+  transactionsForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,9 +37,24 @@ export class EpGpWizardAdminComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loadData();
+    this.buildForm();
+  }
+
+  private loadData() {
     this.accountsLoading = true;
     this.http.get<EpGp[]>(this.configService.APIURL + '/kpi/epgp', {withCredentials: true}).subscribe(result => {
       this.epgp = result;
+      this.epgp.forEach(entry => {
+        this.accounts.push({
+          key: entry.effort_points_account,
+          description: 'EP für ' + entry.battle_tag
+        })
+        this.accounts.push({
+          key: entry.gear_points_account,
+          description: 'GP für ' + entry.battle_tag
+        })
+      })
       this.accountsLoading = false;
     });
     this.eventsLoading = true;
@@ -60,6 +81,12 @@ export class EpGpWizardAdminComponent implements OnInit {
     });
   }
 
+  private buildForm() {
+    this.transactionsForm = this.formBuilder.group({
+      transactions: this.formBuilder.array([])
+    })
+  }
+
   sortEvents(a: RaidEvent, b: RaidEvent): number {
     return a.key.localeCompare(b.key);
   }
@@ -75,6 +102,23 @@ export class EpGpWizardAdminComponent implements OnInit {
     } else {
       return cmp;
     }
+  }
+
+  addTransaction() {
+    let transactionForm = this.formBuilder.group({
+      account: null,
+      title: '',
+      value: 0,
+      date_time: Date.now,
+      events: [],
+      characters: [],
+      items: []
+    });
+    (this.transactionsForm.get('transactions') as FormArray).push(transactionForm);
+  }
+
+  removeTransaction(index: number) {
+    (this.transactionsForm.get('transactions') as FormArray).removeAt(index);
   }
 
 }

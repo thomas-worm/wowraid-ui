@@ -25,6 +25,129 @@
 <ng-template #prepared>
   <div class="row">
     <div class="col">
+      <h2>
+        Grundlagen
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>
+        Buchungen
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="transactionsForm">
+        <div
+          class="row"
+          formArrayName="transactions"
+          *ngFor="let transaction of transactionsForm.get('transactions').controls; let i = index;">
+          <div
+            class="col"
+            [formGroupName]="i">
+            <div class="row">
+              <div class="col">
+                <div
+                  class="form-group">
+                  <label for="account">Konto:</label>
+                  <select
+                    formControlName="account"
+                    class="custom-select form-control"
+                    placeholder="Konto"
+                    required="required">
+                    <option *ngFor="let account of accounts" [value]="account.key">{{ account.description }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-2">
+                <div
+                class="form-group">
+                  <label for="date_time">Zeit:</label>
+                  <input type="datetime-local"
+                    formControlName="date_time"
+                    class="form-control"
+                    required="required" />
+                </div>
+              </div>
+              <div class="col-4">
+                <div
+                  class="form-group">
+                  <label for="title">Verwendungszweck:</label>
+                  <input
+                    type="text"
+                    formControlName="title"
+                    class="form-control"
+                    placeholder="Verwendungszweck"
+                    required="required" />
+                </div>
+              </div>
+              <div class="col">
+                <div
+                  class="form-group">
+                  <label for="value">Wert:</label>
+                  <input
+                    type="number"
+                    formControlName="value"
+                    step="0.01"
+                    class="form-control" />
+                </div>
+              </div>
+              <div class="col">
+                <div
+                  class="form-group">
+                  <label for="characters">Charaktere:</label>
+                  <select
+                    formControlName="characters"
+                    class="custom-select form-control"
+                    placeholder="Charaktere"
+                    size="4"
+                    multiple="multiple">
+                    <option *ngFor="let character of characters" [value]="[ character.realm, character.name ]">{{ character.name }} ({{ character.realm }})</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-2">
+                <div
+                  class="form-group">
+                  <label for="events">Ereignisse:</label>
+                  <select
+                    formControlName="events"
+                    class="custom-select form-control"
+                    placeholder="Ereignisse"
+                    size="4"
+                    multiple="multiple">
+                    <option *ngFor="let event of events" [value]="event.key">{{ event.key }} ({{ event.name }})</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <div
+                  class="form-group">
+                  <label for="account">Gegenstände:</label>
+                  <select
+                    formControlName="items"
+                    class="custom-select form-control"
+                    placeholder="Konto"
+                    size="4"
+                    multiple="multiple">
+                    <option *ngFor="let item of items" [value]="item.blizzard_identifier">{{ item.name }} (ID: {{ item.blizzard_identifier }})</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <button class="btn" (click)="removeTransaction(i)">X</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <button class="btn" (click)="addTransaction()">Weitere Buchung hinzufügen</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </ng-template>
