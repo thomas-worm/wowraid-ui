@@ -107,7 +107,7 @@
                     class="custom-select form-control"
                     placeholder="Konto"
                     required="required">
-                    <option *ngFor="let account of accounts" [value]="account.key">{{ account.description }}</option>
+                    <option *ngFor="let account of accounts" [value]="account" [compareWith]="compareAccounts">{{ account.description }}</option>
                   </select>
                 </div>
               </div>
@@ -157,7 +157,7 @@
                     placeholder="Charaktere"
                     size="4"
                     multiple="multiple">
-                    <option *ngFor="let character of characters" [value]="[ character.realm, character.name ]">{{ character.name }} ({{ character.realm }})</option>
+                    <option *ngFor="let character of characters" [value]="character">{{ character.name }} ({{ character.realm }})</option>
                   </select>
                 </div>
               </div>
@@ -171,7 +171,7 @@
                     placeholder="Ereignisse"
                     size="4"
                     multiple="multiple">
-                    <option *ngFor="let event of events" [value]="event.key">{{ event.key }} ({{ event.name }})</option>
+                    <option *ngFor="let event of events" [value]="event">{{ event.key }} ({{ event.name }})</option>
                   </select>
                 </div>
               </div>
@@ -185,7 +185,7 @@
                     placeholder="Konto"
                     size="4"
                     multiple="multiple">
-                    <option *ngFor="let item of items" [value]="item.blizzard_identifier">{{ item.name }} (ID: {{ item.blizzard_identifier }})</option>
+                    <option *ngFor="let item of items" [value]="item">{{ item.name }} (ID: {{ item.blizzard_identifier }})</option>
                   </select>
                 </div>
               </div>

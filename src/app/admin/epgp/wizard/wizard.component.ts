@@ -200,4 +200,14 @@ export class EpGpWizardAdminComponent implements OnInit {
     });
   }
 
+  compareAccounts(a: {
+    key: string,
+    description: string
+  }, b: {
+    key: string,
+    description: string
+  }) {
+    return a.key == b.key;
+  }
+
 }
