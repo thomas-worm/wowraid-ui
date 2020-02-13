@@ -176,6 +176,8 @@ export class EpGpWizardAdminComponent implements OnInit {
       console.log('Generiere Buchungen für ' + character.name + ' (' + character.realm + ')...');
       console.log(character);
       let epgp = this.epgp.find(e => e.characters.filter(c => c.name == character.name && c.realm == character.realm));
+      let ep_acc = this.accounts.find(ac => ac.key == epgp.effort_points_account);
+      let gp_acc = this.accounts.find(ac => ac.key == epgp.effort_points_account);
       console.log(epgp);
       raids.forEach(raid => {
         console.log('Raid ' + raid.key + '...');
@@ -186,7 +188,7 @@ export class EpGpWizardAdminComponent implements OnInit {
           if (basics.early_bonus > 0 && attendee.start_datetime == raid.start_datetime) {
             console.log('Pünktliche Teilnahme wird vergütet...');
             let earlyTransaction = this.formBuilder.group({
-              account: [ { key: epgp.effort_points_account, description: null } ] ,
+              account: [ ep_acc ] ,
               title: [ 'Bonus: Pünktliche Anwesenheit zum Raid' ],
               value: [ basics.early_bonus ],
               date_time: [ raid.start_datetime ],
@@ -200,16 +202,6 @@ export class EpGpWizardAdminComponent implements OnInit {
         }
       });
     });
-  }
-
-  compareAccounts(a: {
-    key: string,
-    description: string
-  }, b: {
-    key: string,
-    description: string
-  }): boolean {
-    return a.key == b.key;
   }
 
 }

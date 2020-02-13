@@ -107,7 +107,7 @@
                     class="custom-select form-control"
                     placeholder="Konto"
                     required="required">
-                    <option *ngFor="let account of accounts" [ngValue]="account.key">{{ account.description }}</option>
+                    <option *ngFor="let account of accounts" [ngValue]="account">{{ account.description }}</option>
                   </select>
                 </div>
               </div>
