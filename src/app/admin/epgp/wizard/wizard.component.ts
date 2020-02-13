@@ -19,6 +19,9 @@ export class EpGpWizardAdminComponent implements OnInit {
   eventsLoading: boolean = false;
   itemsLoading: boolean = false;
 
+  basicsRaids: RaidEvent[] = [];
+  basicsCharacters: Character[] = [];
+
   events: RaidEvent[] = [];
   characters: Character[] = [];
   items: Item[] = [];
@@ -29,6 +32,7 @@ export class EpGpWizardAdminComponent implements OnInit {
   }[] = [];
 
   transactionsForm: FormGroup;
+  basicsForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,6 +42,7 @@ export class EpGpWizardAdminComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
+    this.buildBasicsForm();
     this.buildForm();
   }
 
@@ -81,10 +86,32 @@ export class EpGpWizardAdminComponent implements OnInit {
     });
   }
 
+  private buildBasicsForm() {
+    this.basicsForm = this.formBuilder.group({
+      events: [],
+      characters: []
+    });
+    this.basicsForm.controls.events.valueChanges.subscribe(value => updateBasicsCharacters(value));
+  }
+
   private buildForm() {
     this.transactionsForm = this.formBuilder.group({
       transactions: this.formBuilder.array([])
     })
+  }
+
+  updateBasicsCharacters(value: string[]) {
+    this.basicsForm.controls.characters.patchValue([]);
+    let characterList: Character[] = [];
+    this.events.filter(event => value.includes(event.key)).forEach(event => {
+      event.attendees.forEach(attendee => {
+        if (characterList.filter(e => e.name == attendee.character_name && e.realm == attendee.character_realm).length == 0) {
+          characterList.push(this.characters.find(c => c.name == attendee.character_name && c.realm == attendee.character_realm));
+        }
+      })
+    });
+    this.basicsCharacters = characterList;
+    this.basicsForm.controls.characters.patchValue(this.basicsCharacters);
   }
 
   sortEvents(a: RaidEvent, b: RaidEvent): number {
@@ -119,6 +146,22 @@ export class EpGpWizardAdminComponent implements OnInit {
 
   removeTransaction(index: number) {
     (this.transactionsForm.get('transactions') as FormArray).removeAt(index);
+  }
+
+  filterAndSortRaids(events: RaidEvent[]): RaidEvent[] {
+    return this.filterByEventcategory(events, 'raid').sort((a, b) => {
+      if (a.start_datetime < b.start_datetime) {
+        return -1
+      } else if (a.start_datetime > b.start_datetime) {
+        return 1
+      } else {
+        return 0
+      }
+    });
+  }
+
+  filterByEventcategory(events: RaidEvent[], category: string): RaidEvent[] {
+    return events.filter(event => event.categories != null && event.categories.includes(category));
   }
 
 }
