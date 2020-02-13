@@ -89,7 +89,8 @@ export class EpGpWizardAdminComponent implements OnInit {
   private buildBasicsForm() {
     this.basicsForm = this.formBuilder.group({
       events: [],
-      characters: []
+      characters: [],
+      early_bonus: 10
     });
     this.basicsForm.controls.events.valueChanges.subscribe(value => this.updateBasicsCharacters(value));
   }
@@ -110,7 +111,7 @@ export class EpGpWizardAdminComponent implements OnInit {
         }
       })
     });
-    this.basicsCharacters = characterList;
+    this.basicsCharacters = characterList.sort((a, b) => (a.name.localeCompare(b.name)));
     this.basicsForm.controls.characters.patchValue(this.basicsCharacters);
   }
 
@@ -162,6 +163,39 @@ export class EpGpWizardAdminComponent implements OnInit {
 
   filterByEventcategory(events: RaidEvent[], category: string): RaidEvent[] {
     return events.filter(event => event.categories != null && event.categories.includes(category));
+  }
+
+  generateTransactions() {
+    let basics = this.basicsForm.value;
+    let raids = this.events.filter(e => basics.events.includes(e.key));
+    let characterInfos = basics.characters.map(x => {
+      let x_parts = (x == '' || x == ',') ? [null, null] : x.split(',')
+      return {
+        name: x_parts[0],
+        realm: x_parts[1]
+      };
+    });
+    let characters = this.characters.filter(c => characterInfos.filter(ci => ci.name == c.name && ci.realm == c.realm).length > 0);
+    if (basics.early_bonus > 0) {
+      raids.forEach(r => {
+        r.attendees
+          .filter(a => a.start_datetime == r.start_datetime)
+          .filter(a => characters.filter(c => c.name == a.character_name && c.realm == a.character_realm).length > 0)
+          .forEach(a => {
+            (this.transactionsForm.get('transactions') as FormArray).push(
+              this.formBuilder.group({
+                account: this.epgp.find(ac => ac.characters.includes(this.characters.find(c => c.name == a.character_name && c.realm == a.character_realm))).effort_points_account,
+                title: 'Bonus: Pünktliche Anwesenheit zum Raid',
+                value: basics.early_bonus,
+                date_time: r.start_datetime,
+                events: [r.key],
+                characters: [a.character_realm+','+a.character_name],
+                items: []
+              })
+            );
+          })
+      });
+    }
   }
 
 }

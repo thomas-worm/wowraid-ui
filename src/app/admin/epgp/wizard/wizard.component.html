@@ -34,7 +34,7 @@
     <div class="col">
       <form [formGroup]="basicsForm">
         <div class="row">
-          <div class="col">
+          <div class="col-6">
             <div
               class="form-group">
               <label for="events">Raids:</label>
@@ -48,7 +48,7 @@
               </select>
             </div>
           </div>
-          <div class="col">
+          <div class="col-6">
             <div
               class="form-group">
               <label for="characters">Charaktere:</label>
@@ -61,6 +61,20 @@
                 <option *ngFor="let character of basicsCharacters" [value]="[ character.realm, character.name ]">{{ character.name }} ({{ character.realm }})</option>
               </select>
             </div>
+          </div>
+          <div class="col">
+            <div
+              class="form-group">
+              <label for="characters">Pünktlichkeitspunkte:</label>
+              <input
+                type="number"
+                formControlName="early_bonus"
+                step="0.01"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="col">
+            <button class="btn btn-secondary" (click)="generateTransactions()">Buchungen vorschlagen</button>
           </div>
         </div>
       </form>
