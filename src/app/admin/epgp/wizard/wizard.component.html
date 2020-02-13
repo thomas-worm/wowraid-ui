@@ -106,9 +106,8 @@
                     formControlName="account"
                     class="custom-select form-control"
                     placeholder="Konto"
-                    required="required"
-                    [compareWith]="compareAccounts">
-                    <option *ngFor="let account of accounts" [ngValue]="account">{{ account.description }}</option>
+                    required="required">
+                    <option *ngFor="let account of accounts" [ngValue]="account.key">{{ account.description }}</option>
                   </select>
                 </div>
               </div>
