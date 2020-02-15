@@ -175,9 +175,9 @@ export class EpGpWizardAdminComponent implements OnInit {
     characters.forEach(character => {
       console.log('Generiere Buchungen für ' + character.name + ' (' + character.realm + ')...');
       console.log(character);
-      let epgp = this.epgp.find(e => e.characters.filter(c => c.name == character.name && c.realm == character.realm));
+      let epgp = this.epgp.find(e => e.characters.find(c => c.name == character.name && c.realm == character.realm));
       let ep_acc = this.accounts.find(ac => ac.key == epgp.effort_points_account);
-      let gp_acc = this.accounts.find(ac => ac.key == epgp.effort_points_account);
+      let gp_acc = this.accounts.find(ac => ac.key == epgp.gear_points_account);
       console.log(epgp);
       raids.forEach(raid => {
         console.log('Raid ' + raid.key + '...');
