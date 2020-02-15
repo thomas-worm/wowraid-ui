@@ -90,7 +90,9 @@ export class EpGpWizardAdminComponent implements OnInit {
     this.basicsForm = this.formBuilder.group({
       events: [],
       characters: [],
-      early_bonus: 10
+      early_bonus: 10,
+      all_bonus: 10,
+      all_bonus_datetime: Date.now
     });
     this.basicsForm.controls.events.valueChanges.subscribe(value => this.updateBasicsCharacters(value));
   }

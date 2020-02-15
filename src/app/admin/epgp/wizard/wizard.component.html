@@ -65,11 +65,32 @@
           <div class="col">
             <div
               class="form-group">
-              <label for="characters">Pünktlichkeitspunkte:</label>
+              <label for="early_bonus">Pünktlichkeitspunkte:</label>
               <input
                 type="number"
                 formControlName="early_bonus"
                 step="0.01"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="form-group">
+              <label for="all_bonus">Bonus für Teilnahme an allen Raids:</label>
+              <input
+                type="number"
+                formControlName="all_bonus"
+                step="0.01"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="col-3">
+            <div
+              class="form-group">
+              <label for="all_bonus_datetime">Zeitpunkt für Alle-Raids-Bonus:</label>
+              <input
+                type="datetime-local"
+                formControlName="all_bonus_datetime"
                 class="form-control" />
             </div>
           </div>
