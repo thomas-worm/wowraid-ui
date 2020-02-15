@@ -176,31 +176,35 @@ export class EpGpWizardAdminComponent implements OnInit {
       console.log('Generiere Buchungen für ' + character.name + ' (' + character.realm + ')...');
       console.log(character);
       let epgp = this.epgp.find(e => e.characters.find(c => c.name == character.name && c.realm == character.realm));
-      let ep_acc = this.accounts.find(ac => ac.key == epgp.effort_points_account);
-      let gp_acc = this.accounts.find(ac => ac.key == epgp.gear_points_account);
-      console.log(epgp);
-      raids.forEach(raid => {
-        console.log('Raid ' + raid.key + '...');
-        console.log(raid);
-        let attendee = raid.attendees.find(a => a.character_name == character.name && a.character_realm == character.realm);
-        if (attendee) {
-          console.log('Teilnahme am Raid gefunden...');
-          if (basics.early_bonus > 0 && attendee.start_datetime == raid.start_datetime) {
-            console.log('Pünktliche Teilnahme wird vergütet...');
-            let earlyTransaction = this.formBuilder.group({
-              account: [ ep_acc ] ,
-              title: [ 'Bonus: Pünktliche Anwesenheit zum Raid' ],
-              value: [ basics.early_bonus ],
-              date_time: [ raid.start_datetime ],
-              events: [ [ raid ] as RaidEvent[] ],
-              characters: [ [ character ] as Character[] ],
-              items: [ [] as Item[] ]
-            });
-            console.log(earlyTransaction);
-            transactionsArray.push(earlyTransaction);
+      if (epgp) {
+        let ep_acc = this.accounts.find(ac => ac.key == epgp.effort_points_account);
+        let gp_acc = this.accounts.find(ac => ac.key == epgp.gear_points_account);
+        console.log(epgp);
+        raids.forEach(raid => {
+          console.log('Raid ' + raid.key + '...');
+          console.log(raid);
+          let attendee = raid.attendees.find(a => a.character_name == character.name && a.character_realm == character.realm);
+          if (attendee) {
+            console.log('Teilnahme am Raid gefunden...');
+            if (basics.early_bonus > 0 && attendee.start_datetime == raid.start_datetime) {
+              console.log('Pünktliche Teilnahme wird vergütet...');
+              let earlyTransaction = this.formBuilder.group({
+                account: [ ep_acc ] ,
+                title: [ 'Bonus: Pünktliche Anwesenheit zum Raid' ],
+                value: [ basics.early_bonus ],
+                date_time: [ raid.start_datetime ],
+                events: [ [ raid ] as RaidEvent[] ],
+                characters: [ [ character ] as Character[] ],
+                items: [ [] as Item[] ]
+              });
+              console.log(earlyTransaction);
+              transactionsArray.push(earlyTransaction);
+            }
           }
-        }
-      });
+        });
+      } else {
+        console.log('Kein Punktekonto gefunden.');
+      }
     });
   }
 
