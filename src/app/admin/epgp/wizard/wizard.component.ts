@@ -186,6 +186,7 @@ export class EpGpWizardAdminComponent implements OnInit {
         let ep_acc = this.accounts.find(ac => ac.key == epgp.effort_points_account);
         let gp_acc = this.accounts.find(ac => ac.key == epgp.gear_points_account);
         console.log(epgp);
+        let attendee_factor: number = 1.0;
         raids.forEach(raid => {
           console.log('Raid ' + raid.key + '...');
           console.log(raid);
@@ -238,7 +239,14 @@ export class EpGpWizardAdminComponent implements OnInit {
               bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, basics.time_bonus_minutes), 'yyyy-MM-ddTHH:mm:ss' , 'de');
             }
           }
+          let attendeeTime = attendees.map(a => new Date(a.finish_datetime).getTime() - new Date(a.start_datetime).getTime()).reduce((agg, x) => agg = agg + x, 0.0);
+          let raidTime = new Date(raid.finish_datetime).getTime() - new Date(raid.start_datetime).getTime();
+          attendee_factor = (attendeeTime / raidTime) * attendee_factor;
+          console.log('Teilnahmefaktor für diesem Raid: ' + attendee_factor);
         });
+        if (basics.all_bonus > 0 && basics.all_bonus_datetime) {
+
+        }
       } else {
         console.log('Kein Punktekonto gefunden.');
       }
