@@ -242,10 +242,24 @@ export class EpGpWizardAdminComponent implements OnInit {
           let raidTime = new Date(raid.finish_datetime).getTime() - new Date(raid.start_datetime).getTime();
           attendee_factor = (attendeeTime / raidTime) * attendee_factor;
           console.log('Teilnahmefaktor für diesem Raid: ' + attendee_factor);
-          console.log(attendee_factor);
         });
         if (basics.all_bonus > 0 && basics.all_bonus_datetime) {
-
+          console.log('Teilnahme an allen Raids wird vergütet...');
+          if (attendee_factor >= 0.5) {
+            console.log('überwiegende Anwesenheit war vorhanden, Punkte werden gutgeschrieben.');
+            let allRaidBonusTransaction =  this.formBuilder.group({
+              account: [ ep_acc ] ,
+              title: [ 'Bonus: Teilnahme an allen Raidtagen der Woche' ],
+              value: [ basics.all_bonus ],
+              date_time: [ basics.all_bonus_datetime ],
+              events: [ raids as RaidEvent[] ],
+              characters: [ [ character ] as Character[] ],
+              items: [ [] as Item[] ]
+            });
+            preparedTransactionsArray.push(allRaidBonusTransaction);
+          } else {
+            console.log('Insgesamt zu wenig anwesend für den Bonus.');
+          }
         }
       } else {
         console.log('Kein Punktekonto gefunden.');
