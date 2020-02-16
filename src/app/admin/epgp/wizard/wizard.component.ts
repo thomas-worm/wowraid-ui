@@ -242,7 +242,7 @@ export class EpGpWizardAdminComponent implements OnInit {
   }
 
   addMinutes(value: Date, minutes: number): Date {
-    return new Date(value.getTime() + 60 * 1000 * minutes);
+    return new Date(new Date(value).getTime() + 60 * 1000 * minutes);
   }
 
 }
