@@ -65,11 +65,33 @@
           <div class="col">
             <div
               class="form-group">
-              <label for="early_bonus">Pünktlichkeitspunkte:</label>
+              <label for="early_bonus">Pünktlichkeitsbonus:</label>
               <input
                 type="number"
                 formControlName="early_bonus"
                 step="0.01"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="form-group">
+              <label for="time_bonus">Zeitbonus:</label>
+              <input
+                type="number"
+                formControlName="time_bonus"
+                step="0.01"
+                class="form-control" />
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="form-group">
+              <label for="time_bonus_minutes">Minuten für Zeitbonus:</label>
+              <input
+                type="number"
+                formControlName="time_bonus_minutes"
+                step="1"
                 class="form-control" />
             </div>
           </div>

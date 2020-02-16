@@ -6,6 +6,7 @@ import { EpGp } from 'src/app/model/epgp.model';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from 'src/app/config.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-wizard',
@@ -91,6 +92,8 @@ export class EpGpWizardAdminComponent implements OnInit {
       events: [],
       characters: [],
       early_bonus: 10,
+      time_bonus: 15,
+      time_bonus_minutes: 30,
       all_bonus: 10,
       all_bonus_datetime: Date.now
     });
@@ -185,10 +188,14 @@ export class EpGpWizardAdminComponent implements OnInit {
         raids.forEach(raid => {
           console.log('Raid ' + raid.key + '...');
           console.log(raid);
-          let attendee = raid.attendees.find(a => a.character_name == character.name && a.character_realm == character.realm);
-          if (attendee) {
-            console.log('Teilnahme am Raid gefunden...');
-            if (basics.early_bonus > 0 && attendee.start_datetime == raid.start_datetime) {
+          let attendees = raid.attendees.filter(a =>
+            a.character_name == character.name
+            && a.character_realm == character.realm
+          );
+          let early_attendee = attendees.find(a => a.start_datetime == raid.start_datetime);
+          if (early_attendee) {
+            console.log('Pünktliche Teilnahme am Raid gefunden.');
+            if (basics.early_bonus > 0) {
               console.log('Pünktliche Teilnahme wird vergütet...');
               let earlyTransaction = this.formBuilder.group({
                 account: [ ep_acc ] ,
@@ -203,11 +210,37 @@ export class EpGpWizardAdminComponent implements OnInit {
               transactionsArray.push(earlyTransaction);
             }
           }
+          if (basics.time_bonus_minutes > 0 && basics.time_bonus > 0) {
+            console.log('Zeit wird vergütet...');
+            var bonusBeginTime = raid.start_datetime;
+            var bonusEndTime = this.addMinutes(bonusBeginTime, 30);
+            while (bonusEndTime <= raid.finish_datetime) {
+              if (attendees.find(a => a.start_datetime <= bonusBeginTime && a.finish_datetime >= bonusEndTime)) {
+                let startHourMinutes = formatDate(bonusBeginTime, 'HH:mm \'Uhr\'', 'de');
+                let endHourMinutes = formatDate(bonusEndTime, 'HH:mm \'Uhr\'', 'de');
+                console.log('Bonus für Teilnahme von ' + startHourMinutes + ' bis ' + endHourMinutes + '...');
+                let timeBonusTransaction = this.formBuilder.group({
+                  account: [ ep_acc ] ,
+                  title: [ 'Raidteilnahme: ' + startHourMinutes + ' bis ' + endHourMinutes ],
+                  value: [ basics.time_bonus ],
+                  date_time: [ bonusEndTime ],
+                  events: [ [ raid ] as RaidEvent[] ],
+                  characters: [ [ character ] as Character[] ],
+                  items: [ [] as Item[] ]
+                });
+                transactionsArray.push(timeBonusTransaction);
+              }
+            }
+          }
         });
       } else {
         console.log('Kein Punktekonto gefunden.');
       }
     });
+  }
+
+  addMinutes(date: Date, minutes: number): Date {
+    return new Date(date.getTime() + 60 * 1000 * minutes);
   }
 
 }
