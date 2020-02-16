@@ -233,9 +233,9 @@ export class EpGpWizardAdminComponent implements OnInit {
                   items: [ [] as Item[] ]
                 });
                 preparedTransactionsArray.push(timeBonusTransaction);
-                bonusBeginTime = bonusEndTime;
-                bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, basics.time_bonus_minutes), 'yyyy-MM-ddTHH:mm:ss' , 'de');
               }
+              bonusBeginTime = bonusEndTime;
+              bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, basics.time_bonus_minutes), 'yyyy-MM-ddTHH:mm:ss' , 'de');
             }
           }
         });
