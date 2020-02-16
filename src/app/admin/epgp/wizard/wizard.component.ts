@@ -262,7 +262,10 @@ export class EpGpWizardAdminComponent implements OnInit {
               });
               preparedTransactionsArray.push(bossTransaction);
             }
-          })
+          });
+          console.log('Ermittle Loots...');
+          let loots = this.getLoots(raid, character);
+          console.log(loots);
         });
         if (basics.all_bonus > 0 && basics.all_bonus_datetime) {
           console.log('Teilnahme an allen Raids wird vergütet...');
@@ -300,6 +303,22 @@ export class EpGpWizardAdminComponent implements OnInit {
         (agg, b) => agg.concat(b),
         (raid.categories != null && raid.categories.includes('boss')) ? [ raid ] : []
       );
+  }
+  getLoots(raid: RaidEvent, character: Character): {
+    item: Item,
+    event: RaidEvent
+  }[] {
+    let childs = (raid != null && raid.childs != null) ? raid.childs : [];
+    let childLoots = childs.map(c => this.getLoots(c, character)).reduce((agg, ca) => agg.concat(ca), []);
+    let loots = raid.drops
+      .filter(d => d.looter_realm == character.realm && d.looter_name == character.name)
+      .map(d => {
+        return {
+          item: this.items.find(i => i.blizzard_identifier == d.item_blizzard_identifier),
+          event: raid
+        };
+      });
+    return loots.concat(childLoots);
   }
 
   onSubmit() {
