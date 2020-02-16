@@ -229,6 +229,8 @@ export class EpGpWizardAdminComponent implements OnInit {
                   items: [ [] as Item[] ]
                 });
                 transactionsArray.push(timeBonusTransaction);
+                bonusBeginTime = bonusEndTime;
+                bonusEndTime = bonusEndTime = this.addMinutes(bonusBeginTime, 30);
               }
             }
           }
@@ -239,8 +241,8 @@ export class EpGpWizardAdminComponent implements OnInit {
     });
   }
 
-  addMinutes(date: Date, minutes: number): Date {
-    return new Date(date.getTime() + 60 * 1000 * minutes);
+  addMinutes(value: Date, minutes: number): Date {
+    return new Date(value.getTime() + 60 * 1000 * minutes);
   }
 
 }
