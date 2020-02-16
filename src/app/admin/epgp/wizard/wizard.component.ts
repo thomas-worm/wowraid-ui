@@ -281,7 +281,12 @@ export class EpGpWizardAdminComponent implements OnInit {
     console.log(childRaids);
     return
       childRaids
-      .map(c => this.getBosses(c))
+      .map(c => {
+        console.log(c);
+        let bosses = this.getBosses(c);
+        console.log(bosses);
+        return bosses;
+      })
       .reduce(
         (agg, b) => agg.concat(b),
         (raid.categories != null && raid.categories.includes('boss')) ? [ raid ] : []
