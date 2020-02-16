@@ -266,6 +266,20 @@ export class EpGpWizardAdminComponent implements OnInit {
           console.log('Ermittle Loots...');
           let loots = this.getLoots(raid, character);
           console.log(loots);
+          loots.forEach(loot => {
+            let lootTransaction = this.formBuilder.group({
+              account: [ gp_acc ] ,
+              title: [ 'Item: ' + loot.item.name ],
+              value: [
+                5.0
+              ],
+              date_time: [ loot.event.finish_datetime ],
+              events: [ [ loot.event ] as RaidEvent[] ],
+              characters: [ [ character ] as Character[] ],
+              items: [ [ loot.item ] as Item[] ]
+            });
+            preparedTransactionsArray.push(lootTransaction);
+          });
         });
         if (basics.all_bonus > 0 && basics.all_bonus_datetime) {
           console.log('Teilnahme an allen Raids wird vergütet...');
