@@ -242,6 +242,8 @@ export class EpGpWizardAdminComponent implements OnInit {
           let raidTime = new Date(raid.finish_datetime).getTime() - new Date(raid.start_datetime).getTime();
           attendee_factor = (attendeeTime / raidTime) * attendee_factor;
           console.log('Teilnahmefaktor für diesem Raid: ' + attendee_factor);
+          console.log('Ermittle Bosse...');
+          console.log(this.getBosses(raid));
         });
         if (basics.all_bonus > 0 && basics.all_bonus_datetime) {
           console.log('Teilnahme an allen Raids wird vergütet...');
@@ -270,6 +272,16 @@ export class EpGpWizardAdminComponent implements OnInit {
 
   addMinutes(value: Date, minutes: number): Date {
     return new Date(new Date(value).getTime() + 60 * 1000 * minutes);
+  }
+
+  getBosses(raid: RaidEvent): RaidEvent[] {
+    return
+      ((raid.childs != null) ? raid.childs : [])
+      .map(c => this.getBosses(c))
+      .reduce(
+        (agg, b) => agg.concat(b),
+        (raid.categories.includes('boss')) ? [ raid ] : []
+      );
   }
 
   onSubmit() {
