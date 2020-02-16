@@ -172,6 +172,7 @@ export class EpGpWizardAdminComponent implements OnInit {
 
   generateTransactions() {
     let transactionsArray = this.transactionsForm.get('transactions') as FormArray;
+    let preparedTransactionsArray: FormGroup[] = [];
     console.log('Werte Grundlagen aus...');
     let basics = this.basicsForm.value;
     console.log(basics);
@@ -207,14 +208,14 @@ export class EpGpWizardAdminComponent implements OnInit {
                 items: [ [] as Item[] ]
               });
               console.log(earlyTransaction);
-              transactionsArray.push(earlyTransaction);
+              preparedTransactionsArray.push(earlyTransaction);
             }
           }
           if (basics.time_bonus_minutes > 0 && basics.time_bonus > 0) {
             console.log('Zeit wird vergütet...');
             var bonusBeginTime = raid.start_datetime;
             console.log(bonusBeginTime);
-            var bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, 30), 'yyyy-MM-ddTHH:mm:ss' , 'de');
+            var bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, basics.time_bonus_minutes), 'yyyy-MM-ddTHH:mm:ss' , 'de');
             console.log(bonusEndTime);
             while (bonusEndTime <= raid.finish_datetime) {
               if (attendees.find(a => a.start_datetime <= bonusBeginTime && a.finish_datetime >= bonusEndTime)) {
@@ -230,9 +231,9 @@ export class EpGpWizardAdminComponent implements OnInit {
                   characters: [ [ character ] as Character[] ],
                   items: [ [] as Item[] ]
                 });
-                transactionsArray.push(timeBonusTransaction);
+                preparedTransactionsArray.push(timeBonusTransaction);
                 bonusBeginTime = bonusEndTime;
-                bonusEndTime = bonusEndTime = this.addMinutes(bonusBeginTime, 30);
+                bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, basics.time_bonus_minutes), 'yyyy-MM-ddTHH:mm:ss' , 'de');
               }
             }
           }
@@ -241,6 +242,7 @@ export class EpGpWizardAdminComponent implements OnInit {
         console.log('Kein Punktekonto gefunden.');
       }
     });
+    preparedTransactionsArray.forEach(x => transactionsArray.push(x));
   }
 
   addMinutes(value: Date, minutes: number): Date {
