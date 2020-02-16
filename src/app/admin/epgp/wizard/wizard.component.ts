@@ -275,12 +275,14 @@ export class EpGpWizardAdminComponent implements OnInit {
   }
 
   getBosses(raid: RaidEvent): RaidEvent[] {
+    console.log('getBosses()');
+    console.log(raid);
     return
-      ((raid.childs != null) ? raid.childs : [])
+      ((raid != null && raid.childs != null) ? raid.childs : [])
       .map(c => this.getBosses(c))
       .reduce(
         (agg, b) => agg.concat(b),
-        (raid.categories.includes('boss')) ? [ raid ] : []
+        (raid.categories != null && raid.categories.includes('boss')) ? [ raid ] : []
       );
   }
 
