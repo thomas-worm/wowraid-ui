@@ -243,12 +243,31 @@ export class EpGpWizardAdminComponent implements OnInit {
           attendee_factor = (attendeeTime / raidTime) * attendee_factor;
           console.log('Teilnahmefaktor für diesem Raid: ' + attendee_factor);
           console.log('Ermittle Bosse...');
-          console.log(this.getBosses(raid));
+          let bosses = this.getBosses(raid);
+          bosses.forEach(boss => {
+            if (boss.attendees.find(a => a.character_realm == character.realm && a.character_name == character.name)) {
+              console.log('Vergüte Boss ' + boss.name + '...');
+              let bossTransaction = this.formBuilder.group({
+                account: [ ep_acc ] ,
+                title: [ 'Boss-Kill: ' + boss.name ],
+                value: [
+                  (boss.name.toLocaleLowerCase() == 'ragnaros' || boss.name.toLocaleLowerCase() == 'onyxia') ?
+                  10.0 :
+                  5.0
+                ],
+                date_time: [ boss.finish_datetime ],
+                events: [ [ boss ] as RaidEvent[] ],
+                characters: [ [ character ] as Character[] ],
+                items: [ [] as Item[] ]
+              });
+              preparedTransactionsArray.push(bossTransaction);
+            }
+          })
         });
         if (basics.all_bonus > 0 && basics.all_bonus_datetime) {
           console.log('Teilnahme an allen Raids wird vergütet...');
           if (attendee_factor >= 0.5) {
-            console.log('überwiegende Anwesenheit war vorhanden, Punkte werden gutgeschrieben.');
+            console.log('Überwiegende Anwesenheit war vorhanden, Punkte werden gutgeschrieben.');
             let allRaidBonusTransaction =  this.formBuilder.group({
               account: [ ep_acc ] ,
               title: [ 'Bonus: Teilnahme an allen Raidtagen der Woche' ],
