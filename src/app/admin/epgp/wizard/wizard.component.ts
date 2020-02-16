@@ -219,7 +219,6 @@ export class EpGpWizardAdminComponent implements OnInit {
             var bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, basics.time_bonus_minutes), 'yyyy-MM-ddTHH:mm:ss' , 'de');
             console.log(bonusEndTime);
             while (bonusEndTime <= raid.finish_datetime) {
-              console.log('In Loop');
               if (attendees.find(a => a.start_datetime <= bonusBeginTime && a.finish_datetime >= bonusEndTime)) {
                 let startHourMinutes = formatDate(bonusBeginTime, 'HH:mm \'Uhr\'', 'de');
                 let endHourMinutes = formatDate(bonusEndTime, 'HH:mm \'Uhr\'', 'de');
@@ -243,6 +242,7 @@ export class EpGpWizardAdminComponent implements OnInit {
           let raidTime = new Date(raid.finish_datetime).getTime() - new Date(raid.start_datetime).getTime();
           attendee_factor = (attendeeTime / raidTime) * attendee_factor;
           console.log('Teilnahmefaktor für diesem Raid: ' + attendee_factor);
+          console.log(attendee_factor);
         });
         if (basics.all_bonus > 0 && basics.all_bonus_datetime) {
 
