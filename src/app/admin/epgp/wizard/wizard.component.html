@@ -132,7 +132,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <form [formGroup]="transactionsForm">
+      <form [formGroup]="transactionsForm" (ngSubmit)="onSubmit()">
         <div
           class="row form-row"
           formArrayName="transactions"
@@ -238,6 +238,11 @@
         <div class="row">
           <div class="col">
             <button class="btn btn-secondary" (click)="addTransaction()">Weitere Buchung hinzufügen</button>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col">
+            <button type="submit" class="btn btn-primary">Buchungen eintragen</button>
           </div>
         </div>
       </form>

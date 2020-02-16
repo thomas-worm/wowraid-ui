@@ -250,4 +250,9 @@ export class EpGpWizardAdminComponent implements OnInit {
     return new Date(new Date(value).getTime() + 60 * 1000 * minutes);
   }
 
+  onSubmit() {
+    let transactionsData = console.log(this.transactionsForm.value);
+    console.log(transactionsData);
+  }
+
 }
