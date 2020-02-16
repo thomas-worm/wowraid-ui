@@ -214,7 +214,7 @@ export class EpGpWizardAdminComponent implements OnInit {
             console.log('Zeit wird vergütet...');
             var bonusBeginTime = raid.start_datetime;
             console.log(bonusBeginTime);
-            var bonusEndTime = this.addMinutes(bonusBeginTime, 30);
+            var bonusEndTime = <Date><any>formatDate(this.addMinutes(bonusBeginTime, 30), 'yyyy-MM-ddTHH:mm:ss' , 'de');
             console.log(bonusEndTime);
             while (bonusEndTime <= raid.finish_datetime) {
               if (attendees.find(a => a.start_datetime <= bonusBeginTime && a.finish_datetime >= bonusEndTime)) {
