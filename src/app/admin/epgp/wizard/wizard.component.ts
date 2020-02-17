@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { ConfigService } from 'src/app/config.service';
 import { formatDate } from '@angular/common';
+import { CREATED } from 'http-status-codes';
 
 @Component({
   selector: 'app-wizard',
@@ -338,6 +339,28 @@ export class EpGpWizardAdminComponent implements OnInit {
   onSubmit() {
     let transactionsData = this.transactionsForm.value.transactions;
     console.log(transactionsData);
+    let transactionDtos = transactionsData.map(transaction => {
+      return {
+        account_key: transaction.account.key,
+        date_time: transaction.date_time,
+        title: transaction.title,
+        value: transaction.value,
+        characters: transaction.characters,
+        events: transaction.events.map(e => e.key),
+        items: transaction.items.map(i => i.blizzard_identifier)
+      }
+    });
+    console.log(transactionDtos);
+    this.http.post(this.configService.APIURL + '/transactions', transactionDtos, {
+      observe: 'response',
+      withCredentials: true
+    }).subscribe(response => {
+      if (response.status == CREATED) {
+        alert('Success');
+      } else {
+        alert('Es ist ein Fehler aufgetreten. Wende dich an die Raidleitung.');
+      }
+    });
   }
 
 }
