@@ -336,7 +336,7 @@ export class EpGpWizardAdminComponent implements OnInit {
   }
 
   onSubmit() {
-    let transactionsData = console.log(this.transactionsForm.value);
+    let transactionsData = this.transactionsForm.value.transactions;
     console.log(transactionsData);
   }
 
