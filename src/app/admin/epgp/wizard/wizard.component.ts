@@ -252,7 +252,12 @@ export class EpGpWizardAdminComponent implements OnInit {
                 account: [ ep_acc ] ,
                 title: [ 'Boss-Kill: ' + boss.name ],
                 value: [
-                  (boss.name.toLocaleLowerCase() == 'ragnaros' || boss.name.toLocaleLowerCase() == 'onyxia') ?
+                  (boss.name.toLocaleLowerCase() == 'ragnaros'
+                  || boss.name.toLocaleLowerCase() == 'onyxia'
+                  || boss.name.toLocaleLowerCase() == 'razorgore, der ungezähmte'
+                  || boss.name.toLocaleLowerCase() == 'vaelastrasz, der verdorbene'
+                  || boss.name.toLocaleLowerCase() == 'brutwächter dreschbringer'
+                  ) ?
                   10.0 :
                   5.0
                 ],
@@ -272,6 +277,15 @@ export class EpGpWizardAdminComponent implements OnInit {
               account: [ gp_acc ] ,
               title: [ 'Item: ' + loot.item.name ],
               value: [
+                (loot.event != null &&
+                  (
+                    loot.event.name.toLocaleLowerCase() == 'ragnaros'
+                    || loot.event.name.toLocaleLowerCase() == 'onyxia'
+                    || loot.event.name.toLocaleLowerCase() == 'razorgore, der ungezähmte'
+                    || loot.event.name.toLocaleLowerCase() == 'vaelastrasz, der verdorbene'
+                    || loot.event.name.toLocaleLowerCase() == 'brutwächter dreschbringer'
+                  )) ?
+                10.0 :
                 5.0
               ],
               date_time: [ loot.event.finish_datetime ],
