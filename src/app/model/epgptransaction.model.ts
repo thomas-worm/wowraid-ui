@@ -12,6 +12,10 @@ export class EpGpTransaction {
     public characters: {
       realm: string,
       name: string
+    }[],
+    public items: {
+      blizzard_identifier: string,
+      name: string
     }[]
   ) {}
 }

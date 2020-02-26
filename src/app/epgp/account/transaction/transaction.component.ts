@@ -47,6 +47,13 @@ export class EpGpAccountTransactionComponent implements OnInit, AfterViewInit {
       });
       popoverContent += '</ul></dd>';
     }
+    if (transaction.items != null && transaction.items.length > 0) {
+      popoverContent += '<dt class="col-3 text-nowrap">Gegenstände:</dt><dd class="col-9"><ul class="row mb-0">';
+      transaction.items.forEach(item => {
+        popoverContent += '<li class="col-12"><a href="https://classic.wowhead.com/item=' + _.escape(item.blizzard_identifier) + '">' + _.escape(item.name) + '</a></li>';
+      });
+      popoverContent += '</ul></dd>';
+    }
     popoverContent += '</dl>';
     return popoverContent;
   }
