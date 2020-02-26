@@ -11,14 +11,17 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/">Raidzeiten</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/lootregeln">Lootregeln</a>
+      <li class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Lootsystem
+        </a>
+        <div class="dropdown-menu" aria-labelledby="responsiveNavbarDropdown">
+          <a class="dropdown-item" routerLink="/epgp">Priorität und Punktekonten</a>
+          <a class="dropdown-item" routerLink="/lootregeln">Regeln des Lootsystems</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/raids">Raidtermine</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/epgp">EPGP</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/guide">Guides</a>
