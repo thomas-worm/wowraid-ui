@@ -252,14 +252,27 @@ export class EpGpWizardAdminComponent implements OnInit {
                 account: [ ep_acc ] ,
                 title: [ 'Boss-Kill: ' + boss.name ],
                 value: [
-                  (boss.name.toLocaleLowerCase() == 'ragnaros'
-                  || boss.name.toLocaleLowerCase() == 'onyxia'
-                  || boss.name.toLocaleLowerCase() == 'razorgore, der ungezähmte'
-                  || boss.name.toLocaleLowerCase() == 'vaelastrasz, der verdorbene'
-                  || boss.name.toLocaleLowerCase() == 'brutwächter dreschbringer'
+                  ( boss.name.toLocaleLowerCase() == 'nefarian'
                   ) ?
-                  10.0 :
-                  5.0
+                  20.0 :
+                  (
+                    (boss.name.toLocaleLowerCase() == 'chromaggus'
+                    ) ?
+                    15.0 :
+                    (
+                      (boss.name.toLocaleLowerCase() == 'ragnaros'
+                      || boss.name.toLocaleLowerCase() == 'onyxia'
+                      || boss.name.toLocaleLowerCase() == 'razorgore, der ungezähmte'
+                      || boss.name.toLocaleLowerCase() == 'vaelastrasz, der verdorbene'
+                      || boss.name.toLocaleLowerCase() == 'brutwächter dreschbringer'
+                      || boss.name.toLocaleLowerCase() == 'feuerschwinge'
+                      || boss.name.toLocaleLowerCase() == 'schattenschwinge'
+                      || boss.name.toLocaleLowerCase() == 'flammenmaul'
+                      ) ?
+                      10.0 :
+                      5.0
+                    )
+                  )
                 ],
                 date_time: [ boss.finish_datetime ],
                 events: [ [ boss ] as RaidEvent[] ],
@@ -284,8 +297,16 @@ export class EpGpWizardAdminComponent implements OnInit {
                     || loot.event.name.toLocaleLowerCase() == 'razorgore, der ungezähmte'
                     || loot.event.name.toLocaleLowerCase() == 'vaelastrasz, der verdorbene'
                     || loot.event.name.toLocaleLowerCase() == 'brutwächter dreschbringer'
+                    || loot.event.name.toLocaleLowerCase() == 'feuerschwinge'
+                    || loot.event.name.toLocaleLowerCase() == 'schattenschwinge'
+                    || loot.event.name.toLocaleLowerCase() == 'flammenmaul'
+                    || loot.event.name.toLocaleLowerCase() == 'chromaggus'
+                    || loot.event.name.toLocaleLowerCase() == 'nefarian'
                   )) ?
                 10.0 :
+                ( loot.item.name.toLocaleLowerCase() == 'rucksack aus onyxias haut'
+                ) ?
+                0.0 :
                 5.0
               ],
               date_time: [ loot.event.finish_datetime ],
